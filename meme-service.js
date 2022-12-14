@@ -16,6 +16,23 @@ function _createMeme(){
                 size : 20,
                 aligh: 'left',
                 color: 'red'
+            }, 
+            {
+                txt : 'Line number 2',
+                size : 20,
+                aligh: 'left',
+                color: 'red'
+            },
+            {
+                txt : 'Line 3',
+                size : 20,
+                aligh: 'left',
+                color: 'red'
+            },             {
+                txt : 'Line 4',
+                size : 20,
+                aligh: 'left',
+                color: 'red'
             }
         ]
     }

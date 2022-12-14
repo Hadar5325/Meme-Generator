@@ -16,24 +16,51 @@ function renderMeme() {
 
     const currMeme = getMeme()
     const idMeme = currMeme.selectedImgId
-    const txtMeme = currMeme.lines[0].txt
+
+    // const txtMeme = currMeme.lines[0].txt
+    // const txtMeme2 = currMeme.lines[1].txt
+    console.log(currMeme.lines)
+    const linesToShow = currMeme.lines.map(lineObj => lineObj.txt)
+    console.log(linesToShow)
+
     const urlMeme = getImgById(idMeme)
-    renderImageOnCanvas(urlMeme, txtMeme)
+    renderImageOnCanvas(urlMeme, linesToShow)
 }
 
-function renderImageOnCanvas(urlMeme, txtMeme) {
+function renderImageOnCanvas(urlMeme, linesToShow) {
     const elImage = new Image()
     elImage.src = urlMeme
 
     elImage.onload = () => {
         gCtx.drawImage(elImage, 0, 0, gElCanvas.width, gElCanvas.height)
-        lineOfTextOnCanvas(txtMeme)
-
+        lineOfTextOnCanvas(linesToShow)
     }
 }
 
-function lineOfTextOnCanvas(txtMeme) {
-    gCtx.fillText(txtMeme, 10, 50);
+function lineOfTextOnCanvas(linesToShow) {
+    if (linesToShow.length > 2) {
+
+        let newLines = linesToShow.slice()
+        const twoFirstLines = newLines.splice(0, 2)
+        linesMoreThan2(newLines)
+        linesToShow = twoFirstLines
+    }
+    switch (linesToShow.length) {
+        case 1:
+            gCtx.fillText(linesToShow[0], 10, 50);
+            break;
+        case 2:
+            gCtx.fillText(linesToShow[0], 10, 50);
+            gCtx.fillText(linesToShow[1], 10, 350);
+            break;
+    }
+}
+function linesMoreThan2(linesToShow) {
+    let counter = 0
+    for (let i = 0; i < linesToShow.length; i++) {
+        gCtx.fillText(linesToShow[i], 10, 200 + counter);
+        counter += 25
+    }
 }
 
 function onTextInput(text) {
@@ -65,7 +92,7 @@ function onIncreaseFont() {
 function onChangeFont(value) {
     const symbol = value.innerText
     const arr = gCtx.font.split('px')
-    let numOfFont = symbol === '+'? +arr[0] + 5 : +arr[0] - 5
+    let numOfFont = symbol === '+' ? +arr[0] + 5 : +arr[0] - 5
     console.log(numOfFont)
     if (numOfFont >= 70 || numOfFont <= 10) return
     gCtx.font = `${numOfFont}px serif`;
@@ -73,18 +100,20 @@ function onChangeFont(value) {
 
 //Change color of text 
 var elInput = document.querySelector('.colorInput')
-elInput.addEventListener('input', function(){
+elInput.addEventListener('input', function () {
     const color = elInput.value;
     gCtx.fillStyle = color
-    }, false);
+}, false);
+
+
+// Switch lines 
+function onSwitchLines() {
+
+}
 
 
 
 
-
-
-
-    
 // https://www.w3schools.com/tags/tryit.asp?filename=tryhtml5_canvas_textalign
 
 
