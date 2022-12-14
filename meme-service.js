@@ -27,8 +27,8 @@ function _createImages(){
         url: 'meme-images-sqr/1.jpg',
         keywords: ['funny', 'cat']
     },{
-        id:5,
-        url: 'meme-images-sqr/3.jpg',
+        id:2,
+        url: 'meme-images-sqr/2.jpg',
         keywords: ['funny', 'cat']
     },]
 }
@@ -40,13 +40,14 @@ function getImage(){
     return gImgs
 }
 
-function getImgById(idxImg){
-    return gImgs.find(item => (idxImg === item.id));
+function setLineTxt(text){
+    gMeme.lines[0].txt = text
+}
+function setImg(idImg){
+    gMeme.selectedImgId = idImg
 }
 
-function setLineTxt(txt){
-    gMeme.txt = txt
-}
-function setImg(){
-
+function getImgById(idImg){
+    let reqImage =  gImgs.find(item => idImg === item.id)
+    return reqImage.url
 }

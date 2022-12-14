@@ -9,17 +9,16 @@ function renderMeme() {
     resizeCanvas()
 
     const currMeme = getMeme()
-    console.log(currMeme)
     const idMeme = currMeme.selectedImgId
     const txtMeme = currMeme.lines[0].txt
-
-    renderImageOnCanvas(idMeme, txtMeme)
-
+    const urlMeme = getImgById(idMeme)
+    console.log(urlMeme)
+    renderImageOnCanvas(urlMeme, txtMeme)
 }
 
-function renderImageOnCanvas(idMeme, txtMeme) {
+function renderImageOnCanvas(urlMeme, txtMeme) {
     const elImage = new Image()
-    elImage.src = `meme-images-sqr/${idMeme}.jpg`
+    elImage.src = urlMeme
 
     elImage.onload = () => {
         gCtx.drawImage(elImage, 0, 0, gElCanvas.width, gElCanvas.height)
@@ -33,6 +32,10 @@ function lineOfTextOnCanvas(txtMeme){
     gCtx.fillText(txtMeme, 10, 50);
 }
 
+function onTextInput(text){
+    setLineTxt(text.value)
+    renderMeme()
+}
 
 function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')

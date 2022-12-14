@@ -2,7 +2,6 @@
 
 function renderGallery(){
     const elGallery = document.querySelector('.gallery')
-    console.log(elGallery)
     
     let txtHTML = ''
     gImgs.map(item =>{
@@ -13,7 +12,9 @@ function renderGallery(){
     elGallery.innerHTML = txtHTML
 }
 
-function onImgSelect(idxImg){
-    setImg(idxImg)
+
+function onImgSelect(idImg){
+    setImg(idImg)
     renderMeme()
 }
+
