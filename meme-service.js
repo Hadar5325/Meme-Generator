@@ -8,7 +8,7 @@ _createImages()
 
 function _createMeme(){
     gMeme = {
-        selectedImgId : 5,
+        selectedImgId : 2,
         selectedLineIdx : 0, 
         lines : [
             {
@@ -28,7 +28,7 @@ function _createImages(){
         keywords: ['funny', 'cat']
     },{
         id:5,
-        url: 'meme-images-sqr/5.jpg',
+        url: 'meme-images-sqr/3.jpg',
         keywords: ['funny', 'cat']
     },]
 }
