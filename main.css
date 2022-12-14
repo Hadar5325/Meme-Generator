@@ -76,7 +76,7 @@ body{
     grid-template-columns: repeat(2, 1fr);
     background-color: antiquewhite;
 }
-.text-line{
+.input-line{
     width: 100%;
 }
 .item{

@@ -31,10 +31,10 @@
         <canvas></canvas>
         </div>
         <div class="all-options">
-            <input type="text" name="text-line" class="text-line item" onkeyup="onTextInput(this)" placeholder="Text line">
+            <input type="text" name="input-line" class="input-line item" onkeyup="onTextInput(this)" placeholder="Text line">
             <div class="lines-options">
-                <button class="increase-font item" onclick="onIncreaseFont()">+</button>
-                <button class="decrease-font item" onclick="onDecreaseFont()">-</button>
+                <button class="increase-font item" onclick="onChangeFont(this)">+</button>
+                <button class="decrease-font item" onclick="onChangeFont(this)">-</button>
                 <button class="switch-lines item" onclick="onSwitchLines()">switch lines</button>
             </div>
             <div class="text-options">

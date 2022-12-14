@@ -3,16 +3,21 @@
 let gElCanvas
 let gCtx
 
-function renderMeme() {
+_setting()
+
+function _setting() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
     resizeCanvas()
+    gCtx.font = '30px serif';
+}
+
+function renderMeme() {
 
     const currMeme = getMeme()
     const idMeme = currMeme.selectedImgId
     const txtMeme = currMeme.lines[0].txt
     const urlMeme = getImgById(idMeme)
-    console.log(urlMeme)
     renderImageOnCanvas(urlMeme, txtMeme)
 }
 
@@ -23,16 +28,15 @@ function renderImageOnCanvas(urlMeme, txtMeme) {
     elImage.onload = () => {
         gCtx.drawImage(elImage, 0, 0, gElCanvas.width, gElCanvas.height)
         lineOfTextOnCanvas(txtMeme)
+
     }
 }
 
-
-function lineOfTextOnCanvas(txtMeme){
-    gCtx.font = '30px serif';
+function lineOfTextOnCanvas(txtMeme) {
     gCtx.fillText(txtMeme, 10, 50);
 }
 
-function onTextInput(text){
+function onTextInput(text) {
     setLineTxt(text.value)
     renderMeme()
 }
@@ -43,6 +47,53 @@ function resizeCanvas() {
     gElCanvas.height = elContainer.offsetHeight
 }
 
+
+function clearCanvas() {
+    gCtx.beginPath()
+    gCtx.save()
+}
+
+// Buttons increse font + decrease font
+function onIncreaseFont() {
+    const arr = gCtx.font.split('px')
+    // the number in the arr
+    let numOfFont = +arr[0] + 5
+    if (numOfFont > 70) return
+    gCtx.font = `${numOfFont}px serif`;
+}
+
+function onChangeFont(value) {
+    const symbol = value.innerText
+    const arr = gCtx.font.split('px')
+    let numOfFont = symbol === '+'? +arr[0] + 5 : +arr[0] - 5
+    console.log(numOfFont)
+    if (numOfFont >= 70 || numOfFont <= 10) return
+    gCtx.font = `${numOfFont}px serif`;
+}
+
+//Change color of text 
+var elInput = document.querySelector('.colorInput')
+elInput.addEventListener('input', function(){
+    const color = elInput.value;
+    gCtx.fillStyle = color
+    }, false);
+
+
+
+
+
+
+
+    
+// https://www.w3schools.com/tags/tryit.asp?filename=tryhtml5_canvas_textalign
+
+
+
+
+// var maxWidth = cnv1.width - 10;
+// var lineHeight = 23;
+// var x_pos = (cnv1.width - maxWidth) / 2;
+// var y_pos = 15;
 
 // function drawImageOnCanvas() {
 //     const elImage = new Image()
@@ -71,47 +122,33 @@ function resizeCanvas() {
 //     }
 // }
 
+// // fix that!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// function addLineToCanvas(text, x, y, maxWidth, lineHeight) {
+//     let words = text.split(' ')
+//     console.log(words)
+//     let line = ''
+//     const space = ' '
 
-function clearCanvas() {
-    gCtx.beginPath()
-    gCtx.save()
-}
-
-// var maxWidth = cnv1.width - 10;
-// var lineHeight = 23;
-// var x_pos = (cnv1.width - maxWidth) / 2;
-// var y_pos = 15;
-
-
-
-
-// fix that!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-function addLineToCanvas(text, x, y, maxWidth, lineHeight) {
-    let words = text.split(' ')
-    console.log(words)
-    let line = ''
-    const space = ' '
-
-    console.log(gCtx.measureText(words).width)
-    if (gCtx.measureText(words).width > 120) {
-        console.log(y)
-        line = '\n'
-        y += '\n' + lineHeight
-        console.log(y)
-    }
-    for (var i = 0; i < words.length; i++) {
-        const textLine = words[i]
-        //Check the width of the text, before writing it on the canvas:
-        if (gCtx.measureText(textLine).width > 120) {
-            console.log('yes!!!!!!!!!!!!!!!!!!!!')
-            line = '\n' + words[i]
-            console.log(line, "line")
-            console.log(words[i], "words[i]")
-            y += lineHeight
-            console.log(y, "y")
-        } else line += space + words[i]
-    }
-    gCtx.fillStyle = 'pink'
-    gCtx.font = 'bold 17px arial'
-    gCtx.fillText(line, x, y)
-}
+//     console.log(gCtx.measureText(words).width)
+//     if (gCtx.measureText(words).width > 120) {
+//         console.log(y)
+//         line = '\n'
+//         y += '\n' + lineHeight
+//         console.log(y)
+//     }
+//     for (var i = 0; i < words.length; i++) {
+//         const textLine = words[i]
+//         //Check the width of the text, before writing it on the canvas:
+//         if (gCtx.measureText(textLine).width > 120) {
+//             console.log('yes!!!!!!!!!!!!!!!!!!!!')
+//             line = '\n' + words[i]
+//             console.log(line, "line")
+//             console.log(words[i], "words[i]")
+//             y += lineHeight
+//             console.log(y, "y")
+//         } else line += space + words[i]
+//     }
+//     gCtx.fillStyle = 'pink'
+//     gCtx.font = 'bold 17px arial'
+//     gCtx.fillText(line, x, y)
+// }
