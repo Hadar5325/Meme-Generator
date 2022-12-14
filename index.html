@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body onload="onInit()">
+    <h1>Success! </h1>
+    <!-- Gallery -->
+    <section class="gallery">
+        hi!
+        <img src="./meme-images-sqr/10.jpg" alt="a" class="image">
+    </section>
+
+    <!-- Editor -->
+    <section class="editor">
+        <canvas width="600" height="600" onclick="renderMeme(event)"></canvas>
+
+        <input type="text" class="inputLine" size="40" maxlength="250" />
+    </section>
+    <!-- Meme-Editor -->
+    <script src="meme-service.js"></script>
+    <script src="memeController.js"></script>
+    <!-- Gallery -->
+    <script src="galleryController.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
