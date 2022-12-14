@@ -5,3 +5,96 @@ body{
     height: 100px;
     width: 100px;
 }
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+
+/* Fonts */
+@font-face {
+    font-family: Dancing;
+    src: url(/fonts/DancingScript-Regular.ttf);
+}
+@font-face {
+    font-family: amiroBold;
+    src: url(/fonts/Arimo-Bold.ttf);
+}
+@font-face {
+    font-family: amiro;
+    src: url(/fonts/Arimo-Regular.ttf);
+}
+
+@font-face {
+    font-family: redressed;
+    src: url(/fonts/Redressed-Regular.ttf);
+}
+
+/* Basics */
+
+
+/* Helpers */
+.flex{
+    display: flex;
+}
+.align-center{
+    align-items: center;
+}
+.space-between{
+    justify-content: space-between;
+}
+.clean-list{
+    list-style-type: none;
+}
+
+.logo , .main-nav{
+    font-family: Dancing;
+    font-size: 2rem;
+}
+
+/* layout */
+.main-layout > *:not(.full) {
+    margin-inline-start: 50px;
+    margin-inline-end: 50px;
+}
+
+.full{
+    margin-inline-start: 20px;
+    margin-inline-end: 20px;
+}
+
+/* Components */
+.main-header .main-nav li:not(:last-child){
+    margin-inline-end: 60px;
+}
+.main-header{
+    height: 9rem;
+}
+
+.main-part{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    background-color: antiquewhite;
+}
+.text-line{
+    width: 100%;
+}
+.item{
+    margin-block: 0.5rem;
+}
+
+/* Media Queries */
+/* For Mobile */
+
+/* For Tablet */
+@media(min-width :940px){
+    body{
+        background-color: rgb(125, 203, 203);
+    }
+}
+/* For Web */
+@media(min-width: 1100px){
+    body{
+        background-color: rgb(238, 149, 227);
+    }
+}

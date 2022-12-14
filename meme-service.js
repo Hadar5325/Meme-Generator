@@ -40,10 +40,13 @@ function getImage(){
     return gImgs
 }
 
-function findMemeImageById(idxImg){
+function getImgById(idxImg){
     return gImgs.find(item => (idxImg === item.id));
 }
 
 function setLineTxt(txt){
     gMeme.txt = txt
+}
+function setImg(){
+
 }

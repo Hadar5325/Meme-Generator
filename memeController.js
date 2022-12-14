@@ -15,7 +15,8 @@ function drawImageOnCanvas() {
 
     const meme = getMeme()
     const idxImg = meme.selectedImgId
-    const memeImage = findMemeImageById(idxImg)
+    const memeImage = getImgById(idxImg)
+    console.log(memeImage)
     elImage.src = memeImage.url
 
     elImage.onload = () => {
