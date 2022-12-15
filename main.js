@@ -6,5 +6,7 @@ function onInit(){
 }
 
 function galleryIsChosen(){
+    const elImage = document.querySelector('.containter-image')
+    if(elImage.classList.contains('shown'))return
     toggle()
 }

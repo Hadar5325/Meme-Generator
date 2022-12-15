@@ -106,3 +106,14 @@ function getImgById(idImg) {
     let reqImage = gImgs.find(item => idImg === item.id)
     return reqImage.url
 }
+
+function getRandImg(randIdx) {
+    const item = gImgs.filter(item=> item.id === randIdx)
+    const urlItem = getUrl(...item)
+    return urlItem
+}
+
+function getUrl(obj){
+    console.log(obj)
+    return obj.url
+}

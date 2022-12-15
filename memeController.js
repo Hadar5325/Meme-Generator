@@ -2,6 +2,7 @@
 
 let gElCanvas
 let gCtx
+let gLocLines
 
 settingMemes()
 
@@ -11,6 +12,17 @@ function settingMemes() {
     resizeCanvas()
     gCtx.font = '30px serif';
 }
+gLocLines = [{
+    xStartLine0: 10,
+    yStartLine0: 50
+}, {
+    xStartLine1: 10,
+    yStartLine1: 350
+}, {
+    xstartLineN: 10,
+    xstartLineN: 200,
+}
+]
 
 function renderMeme() {
 
@@ -19,9 +31,7 @@ function renderMeme() {
 
     // const txtMeme = currMeme.lines[0].txt
     // const txtMeme2 = currMeme.lines[1].txt
-    console.log(currMeme.lines)
     const linesToShow = currMeme.lines.map(lineObj => lineObj.txt)
-    console.log(linesToShow)
 
     const urlMeme = getImgById(idMeme)
     renderImageOnCanvas(urlMeme, linesToShow)
@@ -47,14 +57,35 @@ function lineOfTextOnCanvas(linesToShow) {
     }
     switch (linesToShow.length) {
         case 1:
-            gCtx.fillText(linesToShow[0], 10, 50);
+            gCtx.fillText(linesToShow[0], gLocLines[0].xStartLine0, gLocLines[0].yStartLine0);
+
+            const mesureCase1 = gCtx.measureText(linesToShow[0]).width
+            updateGmemeMesures(mesureCase1)
+            console.log(gCtx.measureText(linesToShow))
             break;
+
+
         case 2:
-            gCtx.fillText(linesToShow[0], 10, 50);
-            gCtx.fillText(linesToShow[1], 10, 350);
+            gCtx.fillText(linesToShow[0], gLocLines[0].xStartLine0, gLocLines[0].yStartLine0);
+            gCtx.fillText(linesToShow[1], gLocLines[1].xStartLine1, gLocLines[1].yStartLine1);
+            var mesureCase2 = gCtx.measureText(linesToShow[0])
+            updateGmemeMesures(mesureCase2)
+
+            // console.log(gCtx.measureText(linesToShow[1]))
             break;
     }
 }
+
+function calculateHeight(widthOfTxt) {
+    const height = widthOfTxt.actualBoundingBoxDescent + widthOfTxt.actualBoundingBoxAscent
+    return height
+}
+
+function updateGmemeMesures(mesure) {
+    const height = calculateHeight(mesure)
+    setPosLines(height, mesure.width)
+}
+
 function linesMoreThan2(linesToShow) {
     let counter = 0
     for (let i = 0; i < linesToShow.length; i++) {
@@ -106,30 +137,35 @@ elInput.addEventListener('input', function () {
 }, false);
 
 
-// Switch lines 
-function onSwitchLines(data) {
-    setLine(1)
-    const currMeme = getMeme()
-    // currMeme.lines.forEach(line => {
-    //     console.log(line.txt)
-    // });
-    currMeme.lines[1].txt = 'hi!'
-    renderMeme()
-    data.focus()
+function getRandomMeme(){
+    const randIdx = getRandIntInclu(0,gImgs.length)
+    var randUrlImg = getRandImg(randIdx)
 
-    // model
+    const randNumLines = getRandIntInclu(1,2)
+    const randText = getRandText()
 
-    // const a = currMeme.selectedLineIdx
-    // console.log('a', a)
-    // const b = currMeme.selectedLineIdx
-    // console.log('b', b)
+    const randTextSize= getRandIntInclu(10,50)
+    const randColor = getRandColor()
 
-    // document.getElementById("myText").focus();
-    
-    // gCtx.fillText(linesToShow[0], 10, 50);
-    // gCtx.fillText(linesToShow[1], 10, 350);
-    //dom
 }
+
+
+
+
+
+
+
+// Switch lines
+// function onSwitchLines(data) {
+//     setLine(1)
+//     const currMeme = getMeme()
+//     // currMeme.lines.forEach(line => {
+//     //     console.log(line.txt)
+//     // });
+//     currMeme.lines[1].txt = 'hi!'
+//     renderMeme()
+//     data.focus()
+// }
 
 
 

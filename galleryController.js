@@ -12,6 +12,11 @@ function renderGallery() {
     elGallery.innerHTML = txtHTML
 }
 
+function onFlexible(){
+    const randMeme = getRandomMeme()
+}
+
+
 
 function onImgSelect(idImg) {
     toggle()

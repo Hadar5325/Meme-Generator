@@ -13,13 +13,21 @@ function _createMeme() {
                 txt: 'I sometimes eat Falafel',
                 size: 20,
                 aligh: 'left',
-                color: 'red'
+                color: 'red',
+                pos:{xStart:gLocLines[0].xStartLine1 , 
+                    xEnd:0,
+                    yStart:gLocLines[0].yStartLine1 ,
+                    yEnd:0}
             },
             {
                 txt: 'Line number 2',
                 size: 20,
                 aligh: 'left',
-                color: 'red'
+                color: 'red',
+                pos:{xStart:gLocLines[1].xStartLine1, 
+                    xEnd:0,
+                    yStart:gLocLines[1].yStartLine1,
+                    yEnd:0}
             },
             // {
             //     txt: 'Line 3',
@@ -48,4 +56,9 @@ function setImg(idImg) {
 }
 function setLine(numLine){
     gMeme.selectedLineIdx = numLine 
+}
+
+function setPosLines(height,width,lineIdx){
+    gMeme.lines[0].pos.yEnd = height
+    gMeme.lines[1].pos.xEnd = width
 }
