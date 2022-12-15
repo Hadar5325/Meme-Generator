@@ -3,9 +3,9 @@
 let gElCanvas
 let gCtx
 
-_setting()
+settingMemes()
 
-function _setting() {
+function settingMemes() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
     resizeCanvas()
@@ -107,9 +107,43 @@ elInput.addEventListener('input', function () {
 
 
 // Switch lines 
-function onSwitchLines() {
+function onSwitchLines(data) {
+    setLine(1)
+    const currMeme = getMeme()
+    // currMeme.lines.forEach(line => {
+    //     console.log(line.txt)
+    // });
+    currMeme.lines[1].txt = 'hi!'
+    renderMeme()
+    data.focus()
 
+    // model
+
+    // const a = currMeme.selectedLineIdx
+    // console.log('a', a)
+    // const b = currMeme.selectedLineIdx
+    // console.log('b', b)
+
+    // document.getElementById("myText").focus();
+    
+    // gCtx.fillText(linesToShow[0], 10, 50);
+    // gCtx.fillText(linesToShow[1], 10, 350);
+    //dom
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

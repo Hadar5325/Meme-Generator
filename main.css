@@ -1,10 +1,6 @@
 body{
     background-color: antiquewhite;
 }
-.image {
-    height: 100px;
-    width: 100px;
-}
 
 *{
     box-sizing: border-box;
@@ -34,6 +30,19 @@ body{
 
 
 /* Helpers */
+.hidden{
+    display: none;
+}
+.shown{
+    /* background-color: blue; */
+     display: block;
+}
+
+canvas{
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+
 .flex{
     display: flex;
 }
@@ -71,11 +80,45 @@ body{
     height: 9rem;
 }
 
-.main-part{
+
+:root{
+    --gapImage: 16px;
+    --num-cols-mobile: 2;
+    --num-cols-tablet: 4;
+    --num-cols-web: 6;
+    --row-height: 200px
+}
+
+/* Variables*/
+.image-gallery > img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image-gallery{
+    display: grid;
+    grid-template-columns: repeat(var(--num-cols-mobile),1fr);
+    grid-auto-rows: var(--row-height);
+    gap: var(--gapImage);
+}
+
+.meme-editor{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     background-color: antiquewhite;
+    gap: 10px;
+    grid-template-areas:
+    "image-section  option-section";
+    height: 60vh;
 }
+.canvas-container{
+    grid-area: image-section;
+}
+.all-options{
+    grid-area: option-section;
+}
+
 .input-line{
     width: 100%;
 }
@@ -96,10 +139,16 @@ body{
     body{
         background-color: rgb(125, 203, 203);
     }
+    .image-gallery{
+        grid-template-columns: repeat(var(--num-cols-tablet),1fr);
+    }
 }
 /* For Web */
 @media(min-width: 1100px){
     body{
         background-color: rgb(238, 149, 227);
+    }
+    .image-gallery{
+        grid-template-columns: repeat(var(--num-cols-web),1fr);
     }
 }

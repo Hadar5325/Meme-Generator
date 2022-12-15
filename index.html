@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,13 +8,14 @@
     <title>Document</title>
     <link rel="stylesheet" href="main.css">
 </head>
+
 <body onload="onInit()" class="main-layout">
     <header class="main-header flex align-center space-between full">
         <div class="logo">Meme Generator</div>
         <nav class="main-nav">
             <ul class="flex clean-list">
                 <li>
-                    <a href="#">Gallery</a>
+                    <a href="#" onclick="galleryIsChosen()">Gallery</a>
                 </li>
                 <li>
                     <a href="#">Memes</a>
@@ -24,78 +26,61 @@
             </ul>
         </nav>
     </header>
-        <section class="gallery">
+
+    <section class="containter-image shown">
+        <section class="image-gallery">
+        </section>
     </section>
-    <section class="main-part">
-        <div class="canvas-container">
-        <canvas></canvas>
-        </div>
-        <div class="all-options">
-            <input type="text" name="input-line" class="input-line item" onkeyup="onTextInput(this)" placeholder="Text line">
-            <div class="lines-options">
-                <button class="increase-font item" onclick="onChangeFont(this)">+</button>
-                <button class="decrease-font item" onclick="onChangeFont(this)">-</button>
-                <button class="switch-lines item" onclick="onSwitchLines()">switch lines</button>
+    <section class="container-meme-editor hidden">
+        <div class="meme-editor">
+            <div class="canvas-container">
+                <canvas></canvas>
             </div>
-            <div class="text-options">
-                <button>A+</button>
-                <button>A-</button>
-                <button>left text</button>
-                <button>center text</button>
-                <button>right text</button>
-            </div>
-            <div>
-                <select name="" id="">
-                    <option value="a">a</option>
-                    <option value="a">b</option>
-                    <option value="a">c</option>
-                </select>
-                <button>S</button>
-                <input type="color" name="color" class="colorInput">
-            </div>
-            <div class="icons">
-                <div>a</div>
-                <div>b</div>
-                <div>c</div>
-                <div>d</div>
-            </div>
-            <div>
-                <div>Share</div>
-                <div>Download</div>
+            <div class="all-options">
+                <input type="text" name="input-line" class="input-line item" onkeyup="onTextInput(this)"
+                    placeholder="Text line">
+                <div class="lines-options">
+                    <button class="increase-font item" onclick="onChangeFont(this)">+</button>
+                    <button class="decrease-font item" onclick="onChangeFont(this)">-</button>
+                    <button class="switch-lines item" onclick="onSwitchLines(this)">switch lines</button>
+                </div>
+                <div class="text-options">
+                    <button>A+</button>
+                    <button>A-</button>
+                    <button>left text</button>
+                    <button>center text</button>
+                    <button>right text</button>
+                </div>
+                <div>
+                    <select name="" id="">
+                        <option value="a">a</option>
+                        <option value="a">b</option>
+                        <option value="a">c</option>
+                    </select>
+                    <button>S</button>
+                    <input type="color" name="color" class="colorInput">
+                </div>
+                <div class="icons">
+                    <div>a</div>
+                    <div>b</div>
+                    <div>c</div>
+                    <div>d</div>
+                </div>
+                <div>
+                    <div>Share</div>
+                    <div>Download</div>
+                </div>
             </div>
         </div>
     </section>
-    
+
     <!-- Meme-Editor -->
     <script src="meme-service.js"></script>
+    <script src="galleryService.js"></script>
     <script src="galleryController.js"></script>
     <script src="memeController.js"></script>
     <!-- Gallery -->
     <script src="main.js"></script>
 </body>
+
 </html>
-
-<!-- <body onload="onInit()"> -->
-    <!-- <h1>Success! </h1> -->
-    <!-- <!~~ Gallery ~~> -->
-    <!-- <section class="gallery"> -->
-    <!-- </section> -->
-
-    <!-- <!~~ Editor ~~> -->
-    <!-- <section class="editor"> -->
-        <!-- <button class="increase-font" onclick="onIncreaseFont()">+</button> -->
-        <!-- <button class="decrease-font" onclick="onDecreaseFont()">-</button> -->
-        <!-- <button class="switch-lines" onclick="onSwitchLines()">switch lines</button> -->
-        <!-- <input type="color" name="color" class="colorInput"> -->
-        <!-- <canvas width="600" height="600"></canvas> -->
-        <!-- <input type="text" class="inputLine" size="40" maxlength="250" /> -->
-    <!-- </section> -->
-
-    <!-- <!~~ Meme-Editor ~~> -->
-    <!-- <script src="meme-service.js"></script> -->
-    <!-- <script src="galleryController.js"></script> -->
-    <!-- <script src="memeController.js"></script> -->
-    <!-- <!~~ Gallery ~~> -->
-    <!-- <script src="main.js"></script> -->
-<!-- </body> -->
-<!-- </html> -->
