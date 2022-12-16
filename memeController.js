@@ -2,17 +2,11 @@
 
 let gElCanvas
 let gCtx
-let gLocLines
+let gLines
 
 settingMemes()
 
-function settingMemes() {
-    gElCanvas = document.querySelector('canvas')
-    gCtx = gElCanvas.getContext('2d')
-    resizeCanvas()
-    gCtx.font = '30px serif';
-}
-gLocLines = [{
+gLines = [{
     xStartLine0: 10,
     yStartLine0: 50
 }, {
@@ -23,6 +17,13 @@ gLocLines = [{
     xstartLineN: 200,
 }
 ]
+
+function settingMemes() {
+    gElCanvas = document.querySelector('canvas')
+    gCtx = gElCanvas.getContext('2d')
+    resizeCanvas()
+    gCtx.font = '30px serif';
+}
 
 function renderMeme() {
 
@@ -43,7 +44,7 @@ function renderImageOnCanvas(urlMeme, linesToShow) {
 
     elImage.onload = () => {
         gCtx.drawImage(elImage, 0, 0, gElCanvas.width, gElCanvas.height)
-        lineOfTextOnCanvas(linesToShow)
+        // lineOfTextOnCanvas(linesToShow)
     }
 }
 
@@ -57,7 +58,7 @@ function lineOfTextOnCanvas(linesToShow) {
     }
     switch (linesToShow.length) {
         case 1:
-            gCtx.fillText(linesToShow[0], gLocLines[0].xStartLine0, gLocLines[0].yStartLine0);
+            gCtx.fillText(linesToShow[0], gLines[0].xStartLine0, gLines[0].yStartLine0);
 
             const mesureCase1 = gCtx.measureText(linesToShow[0]).width
             updateGmemeMesures(mesureCase1)
@@ -66,8 +67,8 @@ function lineOfTextOnCanvas(linesToShow) {
 
 
         case 2:
-            gCtx.fillText(linesToShow[0], gLocLines[0].xStartLine0, gLocLines[0].yStartLine0);
-            gCtx.fillText(linesToShow[1], gLocLines[1].xStartLine1, gLocLines[1].yStartLine1);
+            gCtx.fillText(linesToShow[0], gLines[0].xStartLine0, gLines[0].yStartLine0);
+            gCtx.fillText(linesToShow[1], gLines[1].xStartLine1, gLines[1].yStartLine1);
             var mesureCase2 = gCtx.measureText(linesToShow[0])
             updateGmemeMesures(mesureCase2)
 
@@ -92,11 +93,6 @@ function linesMoreThan2(linesToShow) {
         gCtx.fillText(linesToShow[i], 10, 200 + counter);
         counter += 25
     }
-}
-
-function onTextInput(text) {
-    setLineTxt(text.value)
-    renderMeme()
 }
 
 function resizeCanvas() {
@@ -147,8 +143,78 @@ function getRandomMeme(){
     const randTextSize= getRandIntInclu(10,50)
     const randColor = getRandColor()
 
+    const randStrokeColor = getRandColor()
+
+    const widthOfSizeOnCanvas = gCtx.measureText(randText).width
+    while(widthOfSizeOnCanvas > gCtx.offsetWidth){
+        const randText = getRandText()
+    }
+    console.log(a)
 }
 
+function onTextInput(text) {
+    console.log(text)
+    setLineTxt(text.value)
+    renderMeme()
+}
+
+
+function onSwitchLines() {
+    const currMeme = getMeme()
+    const lenOfLines = currMeme.lines.length
+    const elInput = document.querySelector(".input-line")
+    if (lenOfLines <= 2) {
+        switch (currMeme.selectedLineIdx) {
+            case 0:
+                gCtx.fillText(elInput.value, 30, 50)
+                break
+            case 1:
+                gCtx.fillText(elInput.value, 30, 350)
+                break
+        }
+    } else {
+        switch (currMeme.selectedLineIdx) {
+            case 0:
+                gCtx.fillText(elInput.value, 30, 50)
+                break
+            case 1:
+                gCtx.fillText(elInput.value, 30, 130)
+                break
+            default:
+                gCtx.fillText(elInput.value, 30, 350)
+                break
+        }
+    }
+    let idxNextLine = currMeme.selectedLineIdx + 1
+    if (idxNextLine >= lenOfLines) idxNextLine = 0
+    setSelectedLineIdx(idxNextLine)
+}
+
+
+// function onMoveLineUp(){
+//     const currMeme = getMeme()
+//     const lenOfLines = currMeme.lines.length
+//     const elInput = document.querySelector(".input-line")
+//     switch(currMeme.selectedLineIdx){
+//         case 0:
+
+//             break
+            
+//         case 1:
+
+//             break
+
+//         default:
+
+//     }
+// }
+
+// function onMoveLineDown(){
+//     const currMeme = getMeme()
+//     const lenOfLines = currMeme.lines.length
+//     const elInput = document.querySelector(".input-line")
+
+// }
 
 
 

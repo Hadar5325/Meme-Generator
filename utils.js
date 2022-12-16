@@ -12,7 +12,7 @@ function getRandText() {
         'marker', 'clock', 'table', 'image', 'Trump']
 
 
-    var numOfWordsInLine = getRandIntInclu(0, optionalWords.length-1)
+    var numOfWordsInLine = getRandIntInclu(0, optionalWords.length - 1)
     var result = '';
 
     for (var i = 0; i < numOfWordsInLine; i++) {
@@ -22,8 +22,38 @@ function getRandText() {
     return result;
 }
 
-function getRandColor(){
-    const randColor = Math.floor(Math.random()*16777215).toString(16);
+function getRandColor() {
+    const randColor = Math.floor(Math.random() * 16777215).toString(16);
     const color = "#" + randColor;
     return color
+}
+function onSwitchLines() {
+    const currMeme = getMeme()
+    const lenOfLines = currMeme.lines.length
+    const elInput = document.querySelector(".input-line")
+    if (lenOfLines <= 2) {
+        switch (currMeme.selectedLineIdx) {
+            case 0:
+                gCtx.fillText(elInput.value, 30, 50)
+                break
+            case 1:
+                gCtx.fillText(elInput.value, 30, 350)
+                break
+        }
+    } else {
+        switch (currMeme.selectedLineIdx) {
+            case 0:
+                gCtx.fillText(elInput.value, 30, 50)
+                break
+            case 1:
+                gCtx.fillText(elInput.value, 30, 130)
+                break
+            default:
+                gCtx.fillText(elInput.value, 30, 350)
+                break
+        }
+    }
+    let idxNextLine = currMeme.selectedLineIdx + 1
+    if (idxNextLine >= lenOfLines) idxNextLine = 0
+    setSelectedLineIdx(idxNextLine)
 }
