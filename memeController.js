@@ -133,20 +133,20 @@ elInput.addEventListener('input', function () {
 }, false);
 
 
-function getRandomMeme(){
-    const randIdx = getRandIntInclu(0,gImgs.length)
+function getRandomMeme() {
+    const randIdx = getRandIntInclu(0, gImgs.length)
     var randUrlImg = getRandImg(randIdx)
 
-    const randNumLines = getRandIntInclu(1,2)
+    const randNumLines = getRandIntInclu(1, 2)
     const randText = getRandText()
 
-    const randTextSize= getRandIntInclu(10,50)
+    const randTextSize = getRandIntInclu(10, 50)
     const randColor = getRandColor()
 
     const randStrokeColor = getRandColor()
 
     const widthOfSizeOnCanvas = gCtx.measureText(randText).width
-    while(widthOfSizeOnCanvas > gCtx.offsetWidth){
+    while (widthOfSizeOnCanvas > gCtx.offsetWidth) {
         const randText = getRandText()
     }
     console.log(a)
@@ -158,63 +158,72 @@ function onTextInput(text) {
     renderMeme()
 }
 
+// Start Switch ----------------------------------------------------------
+ /* Switch between lines **********/
 
 function onSwitchLines() {
     const currMeme = getMeme()
     const lenOfLines = currMeme.lines.length
     const elInput = document.querySelector(".input-line")
+
+    let idxNextLine = currMeme.selectedLineIdx + 1
+    if (idxNextLine >= lenOfLines) idxNextLine = 0
+
+    //update service
+    setSelectedLineIdx(idxNextLine)
+    
+    // update dom
+    switchLines(currMeme, lenOfLines, elInput)
+}
+
+// Switch up ********
+function onMoveLineUp() {
+    const currMeme = getMeme()
+    const lenOfLines = currMeme.lines.length
+    const elInput = document.querySelector(".input-line")
+
+    let idxNextLine = currMeme.selectedLineIdx - 1
+    if (idxNextLine < 0) idxNextLine = 2
+    //update service
+    setSelectedLineIdx(idxNextLine)
+
+    // update dom
+    switchLines(currMeme, lenOfLines, elInput)
+}
+
+/* Switch down */
+function onMoveLineDown() {
+    onSwitchLines()
+}
+// The switch itself
+function switchLines(currMeme, lenOfLines, elInput) {
     if (lenOfLines <= 2) {
         switch (currMeme.selectedLineIdx) {
             case 0:
-                gCtx.fillText(elInput.value, 30, 50)
+                gCtx.fillText(elInput.value, 30, arr[0])
                 break
             case 1:
-                gCtx.fillText(elInput.value, 30, 350)
+                gCtx.fillText(elInput.value, 30, arr[1])
                 break
         }
     } else {
         switch (currMeme.selectedLineIdx) {
             case 0:
-                gCtx.fillText(elInput.value, 30, 50)
+                gCtx.fillText(elInput.value, 30, arr[0])
                 break
             case 1:
-                gCtx.fillText(elInput.value, 30, 130)
+                gCtx.fillText(elInput.value, 30, arr[1])
                 break
             default:
-                gCtx.fillText(elInput.value, 30, 350)
+                gCtx.fillText(elInput.value, 30, arr[2])
                 break
         }
     }
-    let idxNextLine = currMeme.selectedLineIdx + 1
-    if (idxNextLine >= lenOfLines) idxNextLine = 0
-    setSelectedLineIdx(idxNextLine)
 }
 
+// End Switch ----------------------------------------------------------
 
-// function onMoveLineUp(){
-//     const currMeme = getMeme()
-//     const lenOfLines = currMeme.lines.length
-//     const elInput = document.querySelector(".input-line")
-//     switch(currMeme.selectedLineIdx){
-//         case 0:
 
-//             break
-            
-//         case 1:
-
-//             break
-
-//         default:
-
-//     }
-// }
-
-// function onMoveLineDown(){
-//     const currMeme = getMeme()
-//     const lenOfLines = currMeme.lines.length
-//     const elInput = document.querySelector(".input-line")
-
-// }
 
 
 

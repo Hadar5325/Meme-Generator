@@ -39,12 +39,13 @@ function _createMeme() {
             //     aligh: 'left',
             //     color: 'red'
             // 
-            // }, {
-            //     txt: 'Line 4',
-            //     size: 20,
-            //     aligh: 'left',
-            //     color: 'red'
-            // }
+            //},
+               {
+                txt: 'Line 4',
+                size: 20,
+                aligh: 'left',
+                color: 'red'
+            }
         ]
     }
 }
