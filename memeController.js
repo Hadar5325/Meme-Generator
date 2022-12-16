@@ -3,6 +3,8 @@
 let gElCanvas
 let gCtx
 let gLines
+let gAlignPos
+let gheight
 
 settingMemes()
 
@@ -19,12 +21,22 @@ gLines = [{
 ]
 const arr = { 0: 50, 1: 150, 2: 350 }
 
-
 function settingMemes() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
     resizeCanvas()
     gCtx.font = '30px serif';
+
+    gAlignPos = {
+        leftPos: 0 + gElCanvas.width / 10,
+        centerPos: gElCanvas.width / 2,
+        rightPos: gElCanvas.width - gElCanvas.width / 10
+    }
+    gheight ={
+        topLine: 0 + gElCanvas.height / 10,
+        middleLines:  gElCanvas.height / 2,
+        bottomLine: gElCanvas.height - gElCanvas.height / 10
+    }
 }
 
 function renderMeme() {
@@ -34,52 +46,90 @@ function renderMeme() {
     const urlMeme = getImgById(idMeme)
 
     const linesToShow = currMeme.lines.map(lineObj => lineObj.txt)
-    renderImageOnCanvas(urlMeme, linesToShow)
+    renderImageOnCanvas(urlMeme, linesToShow, currMeme)
 }
 
 
-function renderImageOnCanvas(urlMeme, linesToShow) {
+function renderImageOnCanvas(urlMeme, linesToShow, currMeme) {
 
     const elImage = new Image()
     elImage.src = urlMeme
 
     elImage.onload = () => {
         gCtx.drawImage(elImage, 0, 0, gElCanvas.width, gElCanvas.height)
-        linesOnCanvas(linesToShow)
+        linesOnCanvas(linesToShow, currMeme)
 
         // old
         // lineOfTextOnCanvas(linesToShow)
     }
 }
 
-function linesOnCanvas(lines) {
+function linesOnCanvas(lines, currMeme) {
+    let alignPos
     switch (lines.length) {
-        case 1:
-            gCtx.fillText(lines[0], 50, arr[0])
+        case 0:
+            console.log('linesOnCanvas -memecontroller 0')
             break;
+        case 1:
+            console.log('linesOnCanvas -memecontroller 1 ')
+            alignPos = getColorFontAndAlign(currMeme, 0)
+            gCtx.fillText(lines[0], alignPos, arr[0])
+            break;
+
         case 2:
-            gCtx.fillText(lines[0], 50, arr[0])
-            gCtx.fillText(lines[1], 50, arr[2])
+            console.log('linesOnCanvas -memecontroller 2 ')
+
+            alignPos = getColorFontAndAlign(currMeme, 0)
+            gCtx.fillText(lines[0], alignPos, arr[0])
+
+            alignPos = getColorFontAndAlign(currMeme, 2)
+            gCtx.fillText(lines[1], alignPos, arr[2])
+
             break;
         default:
-            gCtx.fillText(lines[0], 50, arr[0])
-            gCtx.fillText(lines[lines.length-1], 50, arr[2])
+
+        console.log('linesOnCanvas -memecontroller defualt ')
+
+            alignPos = getColorFontAndAlign(currMeme, 0)
+            gCtx.fillText(lines[0], alignPos, arr[0])
+
+            alignPos = getColorFontAndAlign(currMeme, lines.length - 1)
+            gCtx.fillText(lines[lines.length - 1], alignPos, arr[2])
 
             for (var i = 0; i < lines.length; i++) {
-                if (i === 0  || i === lines.length - 1) continue
-                gCtx.fillText(lines[i], 50, arr[1])
+                if (i === 0 || i === lines.length - 1) continue
+                alignPos = getColorFontAndAlign(currMeme, i)
+                gCtx.fillText(lines[i], alignPos, arr[1])
             }
-
-            
     }
 }
 
 
+function getColorFontAndAlign(currMeme, index) {
+    const color = currMeme.lines[index].color
+    const sizeTxt = currMeme.lines[index].size
+    const align = currMeme.lines[index].align
 
+    gCtx.font = `${sizeTxt}px serif`
+    gCtx.fillStyle = `${color}`
+    gCtx.textAlign = `${align}`
 
+    const alignToShow = alignPos(align)
+    return alignToShow
+}
 
+function alignPos(align) {
+    switch (align) {
+        case 'left':
+            return gAlignPos.leftPos
 
+        case 'center':
+            return gAlignPos.centerPos
 
+        case 'right':
+            return gAlignPos.rightPos
+    }
+}
 
 
 
@@ -167,6 +217,10 @@ function onChangeFont(value) {
 var elInput = document.querySelector('.colorInput')
 elInput.addEventListener('input', function () {
     const color = elInput.value;
+    const currMeme = getMeme()
+    const currLineIdx = currMeme.selectedLineIdx
+
+    currMeme.lines[currLineIdx].color = color
     gCtx.fillStyle = color
 }, false);
 
@@ -220,7 +274,7 @@ function onSwitchLines() {
 
 // Switch up ********
 function onMoveLineUp() {
-    
+
     const elInput = document.querySelector(".input-line")
     elInput.value = ''
 
@@ -261,16 +315,48 @@ function switchLines(currMeme, lenOfLines, elInput) {
                 gCtx.fillText(elInput.value, 30, arr[1])
                 break
             default:
-                console.log('here!')
-                console.log(arr[2])
                 gCtx.fillText(elInput.value, 30, arr[2])
-                console.log(elInput.value , "here!")
                 break
         }
     }
 }
 
 // End Switch ----------------------------------------------------------
+
+// Text options
+
+function onAddTxtLine() {
+    console.log('hi')
+    const currMeme = getMeme()
+    const numOfCurrLines = currMeme.lines.length
+    switch (numOfCurrLines) {
+        case 0:
+            setPosOfNewLine('black','left', 30, 0)
+            break
+        // case 1:
+        //     break
+        // case 2:
+        //     break
+        // default:
+        //     break
+    }
+}
+
+function onDeleteLine() {
+    console.log('wow')
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Advance Feathures
 

@@ -8,50 +8,51 @@ function _createMeme() {
     gMeme = {
         selectedImgId: 2,
         selectedLineIdx: 0,
+        isCreatedLine: false,
         lines: [
-            {
-                txt: 'line1',
-                size: 20,
-                aligh: 'left',
-                color: 'red',
-                pos: {
-                    xStart: gLines[0].xStartLine1,
-                    xEnd: 0,
-                    yStart: gLines[0].yStartLine1,
-                    yEnd: 0
-                }
-            },
-            {
-                txt: 'Line2',
-                size: 20,
-                aligh: 'left',
-                color: 'red',
-                pos: {
-                    xStart: gLines[1].xStartLine1,
-                    xEnd: 0,
-                    yStart: gLines[1].yStartLine1,
-                    yEnd: 0
-                }
-            },
-            {
-                txt: 'Line3',
-                size: 20,
-                aligh: 'left',
-                color: 'red'
-            
-            },
-               {
-                txt: 'Line4',
-                size: 20,
-                aligh: 'left',
-                color: 'red'
-            }, 
             // {
-            //     txt: 'Line 5',
-            //     size: 20,
-            //     aligh: 'left',
-            //     color: 'red'
+            // txt: '',
+            // size: 0,
+            // align: 'left',
+            // color: 'black',
+            // pos: {
+            //     xStart: gLines[0].xStartLine1,
+            //     xEnd: 0,
+            //     yStart: gLines[0].yStartLine1,
+            //     yEnd: 0
             // }
+            // },
+            // {
+            //     txt: 'Line2',
+            //     size: 20,
+            //     align: 'left',
+            //     color: 'green',
+            //     pos: {
+            //         xStart: gLines[1].xStartLine1,
+            //         xEnd: 0,
+            //         yStart: gLines[1].yStartLine1,
+            //         yEnd: 0
+            //     }
+            // },
+            // {
+            //     txt: 'Line3',
+            //     size: 10,
+            //     align: 'center',
+            //     color: 'green'
+
+            // },
+            //    {
+            //     txt: 'Line4',
+            //     size: 20,
+            //     align: 'right',
+            //     color: 'orange'
+            // }, 
+            // // {
+            // //     txt: 'Line 5',
+            // //     size: 20,
+            // //     aligh: 'left',
+            // //     color: 'red'
+            // // }
         ]
     }
 }
@@ -61,9 +62,37 @@ function getMeme() {
 }
 
 function setLineTxt(text) {
-    console.log(gMeme.selectedLineIdx, "64!")
-    gMeme.lines[gMeme.selectedLineIdx].txt = text
+    const index = gMeme.selectedLineIdx
+    gMeme.isCreatedLine ? updateTxt(index, text) : createAnewLine(index, text)
 }
+
+function updateTxt(index, text) {
+    gMeme.lines[index].txt = text
+}
+
+
+function createAnewLine(index, text) {
+
+    if (!gMeme.isCreatedLine) {
+        gMeme.isCreatedLine = true
+        console.log('inside')
+        // create a place to put new data
+        gMeme.lines.splice(index, 0, {});
+        console.log(gMeme)
+
+
+        console.log(gMeme)
+
+        gMeme.lines[index].txt = text
+        gMeme.lines[index].size = 30
+        gMeme.lines[index].align = 'left'
+        gMeme.lines[index].color = 'black'
+
+        console.log(gMeme)
+    }
+}
+
+
 function setImg(idImg) {
     gMeme.selectedImgId = idImg
 }
@@ -79,5 +108,15 @@ function setPosLines(height, width, lineIdx) {
 function setSelectedLineIdx(newIndex) {
     console.log(newIndex)
     gMeme.selectedLineIdx = newIndex
+    console.log(gMeme)
+}
+
+
+function setPosOfNewLine(fontCol, fontSize, fontAlign, indexLine) {
+
+    gMeme.selectedLineIdx = indexLine
+    gMeme.lines[indexLine].size = fontSize
+    gMeme.lines[indexLine].color = fontCol
+    gMeme.lines[indexLine].align = fontAlign
     console.log(gMeme)
 }
