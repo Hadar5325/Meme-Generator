@@ -10,7 +10,7 @@ function _createMeme() {
         selectedLineIdx: 0,
         lines: [
             {
-                txt: 'I sometimes eat Falafel',
+                txt: 'line1',
                 size: 20,
                 aligh: 'left',
                 color: 'red',
@@ -22,7 +22,7 @@ function _createMeme() {
                 }
             },
             {
-                txt: 'Line number 2',
+                txt: 'Line2',
                 size: 20,
                 aligh: 'left',
                 color: 'red',
@@ -33,19 +33,25 @@ function _createMeme() {
                     yEnd: 0
                 }
             },
-            // {
-            //     txt: 'Line 3',
-            //     size: 20,
-            //     aligh: 'left',
-            //     color: 'red'
-            // 
-            //},
-               {
-                txt: 'Line 4',
+            {
+                txt: 'Line3',
                 size: 20,
                 aligh: 'left',
                 color: 'red'
-            }
+            
+            },
+               {
+                txt: 'Line4',
+                size: 20,
+                aligh: 'left',
+                color: 'red'
+            }, 
+            // {
+            //     txt: 'Line 5',
+            //     size: 20,
+            //     aligh: 'left',
+            //     color: 'red'
+            // }
         ]
     }
 }
@@ -55,6 +61,7 @@ function getMeme() {
 }
 
 function setLineTxt(text) {
+    console.log(gMeme.selectedLineIdx)
     gMeme.lines[gMeme.selectedLineIdx].txt = text
 }
 function setImg(idImg) {

@@ -17,7 +17,7 @@ gLines = [{
     xstartLineN: 200,
 }
 ]
-const arr = {0:50, 1:150, 2:350}
+const arr = { 0: 50, 1: 150, 2: 350 }
 
 
 function settingMemes() {
@@ -31,24 +31,62 @@ function renderMeme() {
 
     const currMeme = getMeme()
     const idMeme = currMeme.selectedImgId
-
-    // const txtMeme = currMeme.lines[0].txt
-    // const txtMeme2 = currMeme.lines[1].txt
-    const linesToShow = currMeme.lines.map(lineObj => lineObj.txt)
-
     const urlMeme = getImgById(idMeme)
+
+    const linesToShow = currMeme.lines.map(lineObj => lineObj.txt)
     renderImageOnCanvas(urlMeme, linesToShow)
 }
 
+
 function renderImageOnCanvas(urlMeme, linesToShow) {
+
     const elImage = new Image()
     elImage.src = urlMeme
 
     elImage.onload = () => {
         gCtx.drawImage(elImage, 0, 0, gElCanvas.width, gElCanvas.height)
+        linesOnCanvas(linesToShow)
+
+        // old
         // lineOfTextOnCanvas(linesToShow)
     }
 }
+
+function linesOnCanvas(lines) {
+    switch (lines.length) {
+        case 1:
+            gCtx.fillText(lines[0], 50, arr[0])
+            break;
+        case 2:
+            gCtx.fillText(lines[0], 50, arr[0])
+            gCtx.fillText(lines[1], 50, arr[2])
+            break;
+        default:
+            gCtx.fillText(lines[0], 50, arr[0])
+            gCtx.fillText(lines[lines.length-1], 50, arr[2])
+
+            for (var i = 0; i < lines.length; i++) {
+                if (i === 0  || i === lines.length - 1) continue
+                console.log(lines[i], "lines***")
+                gCtx.fillText(lines[1], 50, arr[1])
+                console.log("**************")
+            }
+
+            
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 function lineOfTextOnCanvas(linesToShow) {
     if (linesToShow.length > 2) {
@@ -135,54 +173,62 @@ elInput.addEventListener('input', function () {
 }, false);
 
 
-function getRandomMeme() {
-    const randIdx = getRandIntInclu(0, gImgs.length)
-    var randUrlImg = getRandImg(randIdx)
 
-    const randNumLines = getRandIntInclu(1, 2)
-    const randText = getRandText()
 
-    const randTextSize = getRandIntInclu(10, 50)
-    const randColor = getRandColor()
 
-    const randStrokeColor = getRandColor()
-
-    const widthOfSizeOnCanvas = gCtx.measureText(randText).width
-    while (widthOfSizeOnCanvas > gCtx.offsetWidth) {
-        const randText = getRandText()
-    }
-    console.log(a)
-}
 
 function onTextInput(text) {
-    console.log(text)
+    console.log(text.value)
     setLineTxt(text.value)
     renderMeme()
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Start Switch ----------------------------------------------------------
- /* Switch between lines **********/
+/* Switch between lines **********/
 
 function onSwitchLines() {
+    const elInput = document.querySelector(".input-line")
+    elInput.value = ''
+
     const currMeme = getMeme()
     const lenOfLines = currMeme.lines.length
-    const elInput = document.querySelector(".input-line")
 
     let idxNextLine = currMeme.selectedLineIdx + 1
     if (idxNextLine >= lenOfLines) idxNextLine = 0
 
     //update service
     setSelectedLineIdx(idxNextLine)
-    
+
     // update dom
     switchLines(currMeme, lenOfLines, elInput)
 }
 
 // Switch up ********
 function onMoveLineUp() {
+    
+    const elInput = document.querySelector(".input-line")
+    elInput.value = ''
+
     const currMeme = getMeme()
     const lenOfLines = currMeme.lines.length
-    const elInput = document.querySelector(".input-line")
+
 
     let idxNextLine = currMeme.selectedLineIdx - 1
     if (idxNextLine < 0) idxNextLine = 2
@@ -225,7 +271,26 @@ function switchLines(currMeme, lenOfLines, elInput) {
 
 // End Switch ----------------------------------------------------------
 
+// Advance Feathures
 
+function getRandomMeme() {
+    const randIdx = getRandIntInclu(0, gImgs.length)
+    var randUrlImg = getRandImg(randIdx)
+
+    const randNumLines = getRandIntInclu(1, 2)
+    const randText = getRandText()
+
+    const randTextSize = getRandIntInclu(10, 50)
+    const randColor = getRandColor()
+
+    const randStrokeColor = getRandColor()
+
+    const widthOfSizeOnCanvas = gCtx.measureText(randText).width
+    while (widthOfSizeOnCanvas > gCtx.offsetWidth) {
+        const randText = getRandText()
+    }
+    console.log(a)
+}
 
 
 

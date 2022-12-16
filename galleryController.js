@@ -29,7 +29,6 @@ function toggle() {
     const elMemeCont = document.querySelector('.container-meme-editor')
     const elImageCont = document.querySelector('.containter-image')
 
-    console.log(elImageCont.classList.contains('shown'))
     if (elImageCont.classList.contains('shown')) {
 
         elImageCont.classList.remove('shown')
