@@ -17,6 +17,8 @@ gLines = [{
     xstartLineN: 200,
 }
 ]
+const arr = {0:50, 1:150, 2:350}
+
 
 function settingMemes() {
     gElCanvas = document.querySelector('canvas')
