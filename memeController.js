@@ -67,9 +67,7 @@ function linesOnCanvas(lines) {
 
             for (var i = 0; i < lines.length; i++) {
                 if (i === 0  || i === lines.length - 1) continue
-                console.log(lines[i], "lines***")
-                gCtx.fillText(lines[1], 50, arr[1])
-                console.log("**************")
+                gCtx.fillText(lines[i], 50, arr[1])
             }
 
             
@@ -229,9 +227,9 @@ function onMoveLineUp() {
     const currMeme = getMeme()
     const lenOfLines = currMeme.lines.length
 
-
     let idxNextLine = currMeme.selectedLineIdx - 1
-    if (idxNextLine < 0) idxNextLine = 2
+    if (idxNextLine < 0) idxNextLine = lenOfLines - 1
+
     //update service
     setSelectedLineIdx(idxNextLine)
 
@@ -263,7 +261,10 @@ function switchLines(currMeme, lenOfLines, elInput) {
                 gCtx.fillText(elInput.value, 30, arr[1])
                 break
             default:
+                console.log('here!')
+                console.log(arr[2])
                 gCtx.fillText(elInput.value, 30, arr[2])
+                console.log(elInput.value , "here!")
                 break
         }
     }

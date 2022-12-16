@@ -61,7 +61,7 @@ function getMeme() {
 }
 
 function setLineTxt(text) {
-    console.log(gMeme.selectedLineIdx)
+    console.log(gMeme.selectedLineIdx, "64!")
     gMeme.lines[gMeme.selectedLineIdx].txt = text
 }
 function setImg(idImg) {
