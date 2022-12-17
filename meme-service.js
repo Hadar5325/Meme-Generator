@@ -61,10 +61,10 @@ function getMeme() {
     return gMeme
 }
 
-function setLineTxt(text, pickedColor) {
+function setLineTxt(text, pickedColor, pickedAlign) {
     const index = gMeme.selectedLineIdx
     console.log(index, "index in set line txt")
-    gMeme.isCreatedLine ? updateTxt(index, text) : createAnewLine(index, text, pickedColor)
+    gMeme.isCreatedLine ? updateTxt(index, text) : createAnewLine(index, text, pickedColor, pickedAlign)
     console.log('end of set line txt')
 }
 
@@ -73,7 +73,7 @@ function updateTxt(index, text) {
 }
 
 
-function createAnewLine(index, text, pickedColor) {
+function createAnewLine(index, text, pickedColor, pickedAlign) {
     gMeme.isCreatedLine = true
     console.log('inside')
     // create a place to put new data
@@ -82,7 +82,7 @@ function createAnewLine(index, text, pickedColor) {
 
     gMeme.lines[index].txt = text
     gMeme.lines[index].size = 30
-    gMeme.lines[index].align = 'left'
+    gMeme.lines[index].align = pickedAlign
     gMeme.lines[index].color = pickedColor
 
     console.log(gMeme)
@@ -139,4 +139,17 @@ function updateSizeFont(newFont){
 function updateColor(newColor){
     if(!gMeme.lines.length) return
     gMeme.lines[gMeme.selectedLineIdx].color = newColor
+}
+
+function setAlignLeft(){
+    gMeme.lines[gMeme.selectedLineIdx].align = 'left'
+}
+function setAlignCenter(){
+    gMeme.lines[gMeme.selectedLineIdx].align = 'center'
+    console.log(gMeme)
+
+}
+function setAlignRight(){
+    gMeme.lines[gMeme.selectedLineIdx].align = 'right'
+
 }

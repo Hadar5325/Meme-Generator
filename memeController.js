@@ -6,6 +6,7 @@ let gLines
 let gAlignPos
 let gheight
 let gPickedColor = null
+let gPickedAlign = null
 const BLACK_COLOR = '#000000'
 
 settingMemes()
@@ -211,13 +212,13 @@ function onChangeFont(value) {
 
     const arr = gCtx.font.split('px')
     let fontSize = symbol === '+' ? +arr[0] + 5 : +arr[0] - 5
-    
+
     console.log(fontSize)
 
     if (fontSize >= 70 || fontSize <= 10) return
-    
+
     updateSizeFont(fontSize)
-    
+
     gCtx.font = `${fontSize}px serif`;
     renderMeme()
 }
@@ -228,7 +229,7 @@ elInputColor.addEventListener('input', function () {
     const elInputLine = document.querySelector('.input-line')
     // console.log(elInputLine.value ===)
     const color = elInputColor.value;
-    if(checkChoosingPropertyBeforeOpeningLineData(elInputLine, color))return
+    if (checkChoosingColorBeforeOpeningLineData(elInputLine, color)) return
 
     console.log('wowwwwwwww')
 
@@ -240,8 +241,8 @@ elInputColor.addEventListener('input', function () {
 }, false);
 
 
-function checkChoosingPropertyBeforeOpeningLineData(elInput, color){
-    if(elInput.value === '' && elInput.getAttribute('placeholder') === 'Text line'){
+function checkChoosingColorBeforeOpeningLineData(elInput, color) {
+    if (elInput.value === '' && elInput.getAttribute('placeholder') === 'Text line') {
         gPickedColor = color
         return true
     }
@@ -252,12 +253,14 @@ function checkChoosingPropertyBeforeOpeningLineData(elInput, color){
 
 function onTextInput(text) {
     console.log(gPickedColor)
-    let pickedColor = gPickedColor? gPickedColor: 'black'
-    console.log(pickedColor)
+    console.log(gPickedAlign)
+    let pickedColor = gPickedColor ? gPickedColor : 'black'
+    let pickedAlign = gPickedAlign    ? gPickedAlign : 'left'
+    console.log(pickedColor, pickedAlign)
     // console.log(gCtx.color)
     // if(gCtx.color !== 'black') console.log('diff black')
     console.log(text.value)
-    setLineTxt(text.value, pickedColor)
+    setLineTxt(text.value, pickedColor, pickedAlign)
     renderMeme()
 }
 
@@ -352,9 +355,12 @@ function switchLines(currMeme, lenOfLines, elInput) {
 // Text options
 
 function onAddTxtLine() {
+
     gPickedColor = null
+    gPickedAlign = null
+
     const elInput = document.querySelector('.input-line')
-    if(elInput.value === '' && elInput.getAttribute('placeholder') === 'Text line')return
+    if (elInput.value === '' && elInput.getAttribute('placeholder') === 'Text line') return
     elInput.value = ''
 
 
@@ -369,16 +375,52 @@ function onDeleteLine() {
     console.log('inside delete')
     const elInput = document.querySelector(".input-line")
     elInput.value = ''
-    
+
     const currMeme = getMeme()
-    const currIndex = currMeme.selectedLineIdx 
+    const currIndex = currMeme.selectedLineIdx
 
     deleteLine(currIndex)
     renderMeme()
-    
-    
 }
 
+
+/*Start Align Text */
+function onAlignLeft() {
+
+    const align = 'left'
+    if (checkChoosingAlignBeforeOpeningLineData(align)) return
+
+    setAlignLeft()
+    renderMeme()
+}
+function onAlignCenter() {
+
+    const align =  'center'
+    if (checkChoosingAlignBeforeOpeningLineData(align)) return
+
+    setAlignCenter()
+    renderMeme()
+}
+function onAlignRight() {
+
+    const align =  'right'
+    if (checkChoosingAlignBeforeOpeningLineData(align)) return
+
+    setAlignRight()
+    renderMeme()
+}
+
+function checkChoosingAlignBeforeOpeningLineData(align) {
+    const elInput = document.querySelector('.input-line')
+    if (elInput.value === '' && elInput.getAttribute('placeholder') === 'Text line') {
+        gPickedAlign = align
+        return true
+    }
+    return false
+}
+
+
+/* End Align Text*/
 
 
 
