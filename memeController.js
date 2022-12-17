@@ -55,9 +55,6 @@ function renderImageOnCanvas(urlMeme, linesToShow, currMeme) {
     elImage.onload = () => {
         gCtx.drawImage(elImage, 0, 0, gElCanvas.width, gElCanvas.height)
         linesOnCanvas(linesToShow, currMeme)
-
-        // old
-        // lineOfTextOnCanvas(linesToShow)
     }
 }
 
@@ -134,38 +131,6 @@ function alignPos(align) {
     }
 }
 
-
-
-
-
-
-function lineOfTextOnCanvas(linesToShow) {
-    if (linesToShow.length > 2) {
-
-        let newLines = linesToShow.slice()
-        const twoFirstLines = newLines.splice(0, 2)
-        linesMoreThan2(newLines)
-        linesToShow = twoFirstLines
-    }
-    switch (linesToShow.length) {
-        case 1:
-            gCtx.fillText(linesToShow[0], gLines[0].xStartLine0, gLines[0].yStartLine0);
-
-            const mesureCase1 = gCtx.measureText(linesToShow[0]).width
-            updateGmemeMesures(mesureCase1)
-            break;
-
-
-        case 2:
-            gCtx.fillText(linesToShow[0], gLines[0].xStartLine0, gLines[0].yStartLine0);
-            gCtx.fillText(linesToShow[1], gLines[1].xStartLine1, gLines[1].yStartLine1);
-            var mesureCase2 = gCtx.measureText(linesToShow[0])
-            updateGmemeMesures(mesureCase2)
-
-            break;
-    }
-}
-
 function calculateHeight(widthOfTxt) {
     const height = widthOfTxt.actualBoundingBoxDescent + widthOfTxt.actualBoundingBoxAscent
     return height
@@ -230,10 +195,6 @@ function checkChoosingFontBeforeOpeningLineData(font) {
     return false
 }
 
-
-
-
-
 //Change color of text 
 var elInputColor = document.querySelector('.colorInput')
 elInputColor.addEventListener('input', function () {
@@ -272,9 +233,6 @@ function checkChoosingColorBeforeOpeningLineData(elInput, color) {
     return false
 }
 
-
-
-
 // STORKE COLOR
 
 //Change stroke-color of text 
@@ -310,22 +268,6 @@ function onTextInput(text) {
     setLineTxt(text.value, pickedColor, pickedAlign, pickedFont, pickedStrokeColor)
     renderMeme()
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // Start Switch ----------------------------------------------------------
@@ -433,7 +375,6 @@ function onDeleteLine() {
     renderMeme()
 }
 
-
 /*Start Align Text */
 function onAlignLeft() {
 
@@ -468,7 +409,6 @@ function checkChoosingAlignBeforeOpeningLineData(align) {
     }
     return false
 }
-
 
 /* End Align Text*/
 
@@ -505,7 +445,6 @@ function loadImageFromInput(ev, onImageReady) {
     }
 
     reader.readAsDataURL(ev.target.files[0]) // Read the file we picked
-
 }
 
 function renderImg(img) {
@@ -533,7 +472,6 @@ function getRandomMeme() {
     }
     console.log(a)
 }
-
 
 /* Stickers */
 
