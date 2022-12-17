@@ -5,6 +5,8 @@ let gCtx
 let gLines
 let gAlignPos
 let gheight
+let gPickedColor = null
+const BLACK_COLOR = '#000000'
 
 settingMemes()
 
@@ -206,34 +208,56 @@ function onIncreaseFont() {
 
 function onChangeFont(value) {
     const symbol = value.innerText
-    const arr = gCtx.font.split('px')
-    let numOfFont = symbol === '+' ? +arr[0] + 5 : +arr[0] - 5
-    console.log(numOfFont)
-    if (numOfFont >= 70 || numOfFont <= 10) return
-    gCtx.font = `${numOfFont}px serif`;
 
+    const arr = gCtx.font.split('px')
+    let fontSize = symbol === '+' ? +arr[0] + 5 : +arr[0] - 5
+    
+    console.log(fontSize)
+
+    if (fontSize >= 70 || fontSize <= 10) return
+    
+    updateSizeFont(fontSize)
+    
+    gCtx.font = `${fontSize}px serif`;
     renderMeme()
 }
 
 //Change color of text 
-var elInput = document.querySelector('.colorInput')
-elInput.addEventListener('input', function () {
-    const color = elInput.value;
-    const currMeme = getMeme()
-    const currLineIdx = currMeme.selectedLineIdx
+var elInputColor = document.querySelector('.colorInput')
+elInputColor.addEventListener('input', function () {
+    const elInputLine = document.querySelector('.input-line')
+    // console.log(elInputLine.value ===)
+    const color = elInputColor.value;
+    if(checkChoosingPropertyBeforeOpeningLineData(elInputLine, color))return
 
-    currMeme.lines[currLineIdx].color = color
+    console.log('wowwwwwwww')
+
+    console.log('before update')
+    updateColor(color)
+
     gCtx.fillStyle = color
+    renderMeme()
 }, false);
 
 
-
+function checkChoosingPropertyBeforeOpeningLineData(elInput, color){
+    if(elInput.value === '' && elInput.getAttribute('placeholder') === 'Text line'){
+        gPickedColor = color
+        return true
+    }
+    return false
+}
 
 
 
 function onTextInput(text) {
+    console.log(gPickedColor)
+    let pickedColor = gPickedColor? gPickedColor: 'black'
+    console.log(pickedColor)
+    // console.log(gCtx.color)
+    // if(gCtx.color !== 'black') console.log('diff black')
     console.log(text.value)
-    setLineTxt(text.value)
+    setLineTxt(text.value, pickedColor)
     renderMeme()
 }
 
@@ -328,30 +352,20 @@ function switchLines(currMeme, lenOfLines, elInput) {
 // Text options
 
 function onAddTxtLine() {
-    const elInput = document.querySelector(".input-line")
+    gPickedColor = null
+    const elInput = document.querySelector('.input-line')
+    if(elInput.value === '' && elInput.getAttribute('placeholder') === 'Text line')return
     elInput.value = ''
 
-    console.log('hi')
-    const currMeme = getMeme()
+
+    const elColorInput = document.querySelector('.colorInput')
+    elColorInput.value = BLACK_COLOR
+
+    console.log('before update')
     updateNewTxtLine()
-
-
-    const numOfCurrLines = currMeme.lines.length
-    // switch (numOfCurrLines) {
-    //     case 0:
-    //         setPosOfNewLine('black','left', 30, 0)
-    //         break
-    //     case 1:
-    //         break
-    //     case 2:
-    //         break
-    //     default:
-    //         break
-    // }
 }
 
 function onDeleteLine() {
-    console.log("**********************************")
     console.log('inside delete')
     const elInput = document.querySelector(".input-line")
     elInput.value = ''
