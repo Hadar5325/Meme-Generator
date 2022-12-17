@@ -29,7 +29,7 @@
 
     <section class="containter-image shown">
         <div class="flex">
-            <button class="flexible btn-flexible btn" onclick="onFlexible()">I'm flexible</button>
+            <button class="flexible btn-flexible" onclick="onFlexible()">I'm flexible</button>
         </div>
         <section class="image-gallery">
         </section>
@@ -43,35 +43,63 @@
                 <input type="text" name="input-line" class="input-line item" onkeyup="onTextInput(this)"
                     placeholder="Text line">
                 <div class="lines-options">
-                    <button onclick="onMoveLineUp()">Up</button>
-                    <button onclick="onMoveLineDown()">Down</button>
-                    <button class="switch-lines item" onclick="onSwitchLines(this)">switch lines</button>
-                    <button onclick="onAddTxtLine(event)">add txt line</button>
-                    <button onclick="onDeleteLine()">delete txt line</button>
+
+                    <div class="container">
+                        <button class="space btn" onclick="onMoveLineUp()">
+                            <img class="img" src="/btn-icons/up-arrow-icon.svg" alt="arrow-up">
+                        </button>
+                        <button class="space btn" onclick="onMoveLineDown()">
+                            <img class="img" src="/btn-icons/down-arrow-icon.svg" alt="arrown-down">
+                        </button>
+                        <button class="space btn" class="switch-lines" onclick="onSwitchLines(this)">
+                            <img class="img" src="/btn-icons/up-and-down-arrows.svg" alt="arrow-up-and-down">
+                        </button>
+                    </div>
+
+                    <div class="container">
+                        <button class="space btn" onclick="onAddTxtLine(event)">
+                            <img class="img" src="./btn-icons/plus.svg" alt="add-line">
+                        </button>
+                        <button class="space btn" onclick="onDeleteLine()">
+                            <img class="img" src="./btn-icons/trash-bin-icon.svg" alt="">
+                        </button>
+                    </div>
                 </div>
-                <div class="text-options">
-                    <button class="increase-font item btn" onclick="onChangeFont(this)">
-                        <img class="increase-img" src="./btn-icons/font-size-increase.svg" alt="increase font">
-                        +</button>
-                    <button class="decrease-font item btn" onclick="onChangeFont(this)">
-                        <img class="decrease-img" src="./btn-icons/font-size-decrease.svg" alt="increase font">
-                        -</button>
-                    <button>A+</button>
-                    <button>A-</button>
-                    <button class="btn left-align" onclick="onAlignLeft()">
-                        <img class="align-left" src="./btn-icons/text-align-left-icon.svg" alt="align-left">
+                <div class="text-options container">
+                    <button onclick="onChangeFont(this)" class="space btn">
+                        <div class="plus">A+
+                        </div>
                     </button>
-                    <button class="btn center-align" onclick="onAlignCenter()">
-                        <img class="align-center" src="./btn-icons/text-align-center-icon.svg" alt="align-center">
+                    <button class="space btn" onclick="onChangeFont(this)">
+                        <div class="minus">A-
+                        </div>
                     </button>
-                    <button class="btn right-align" onclick="onAlignRight()">
-                        <img class="align-right" src="./btn-icons/text-align-right-icon.svg" alt="align-right">
+
+                    <button class="left-align space btn" onclick="onAlignLeft()">
+                        <img class="img align" src="./btn-icons/text-align-left-icon.svg" alt="align-left">
+                    </button>
+                    <button class="center-align space btn" onclick="onAlignCenter()">
+                        <img class="img align" src="./btn-icons/text-align-center-icon.svg" alt="align-center">
+                    </button>
+                    <button class="right-align space btn" onclick="onAlignRight()">
+                        <img class="img align" src="./btn-icons/text-align-right-icon.svg" alt="align-right">
                     </button>
                 </div>
-                <div>
+                <div class="text-options container">
                     <!-- <button>S</button> -->
-                    <input type="color" name="color" class="colorInput">
-                    <input type="color" name="strokeColorInput" class="strokeColorInput">
+                    <button onclick="showAndHiddenInput()" class="space btn">
+                        <img class="img" src="./btn-icons/paint-icon.svg" alt="paint-icon">
+                        <div class="hidden-icon">
+                            <input type="color" name="color" class="colorInput">
+                        </div>
+                    </button>
+
+                    <button onclick="showAndHiddenInput()" class="space btn">
+                        <img class="img" src="./btn-icons/down-arrow-icon.svg" alt="">
+                        <div class="hidden-icon">
+                            <input type="color" name="strokeColorInput" class="strokeColorInput">
+                        </div>
+                    </button>
                 </div>
                 <div class="icons-containter flex space-between">
                     <div>
@@ -90,13 +118,18 @@
                         <img class="icon" onclick="addIcon(this)" src="icons/reading-book.png">
                     </div>
                 </div>
-                <div class="containter-share-download flex space-between align-center">
-                    <button class="share-button" onclick="onUploadImg()">Share</button>
-                    <button class="download-button">
+                <div class="container">
+                    <button class="share-button space btn" onclick="onUploadImg()">
+                        <img class="img" src="./btn-icons/share-line-icon.svg" alt="share-icon">
+                        Share</button>
+                    <button class="download-button space btn">
+                        <img class="img" src="./btn-icons/download-icon.svg" alt="download">
                         <a href="#" onclick="onDownLoadImg(this)" download="Meme">Download</a>
                     </button>
                 </div>
-                <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" />
+                <div class="container space">
+                    <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" />
+                </div>
 
             </div>
         </div>

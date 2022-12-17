@@ -1,27 +1,48 @@
-.btn{
+.img{
     cursor: pointer;
-    /* border-radius: 10px; */
-    /* background-color: white; */
-    
-
+    height: 1.3rem;
 }
-.btn-flexible{
+.paint-icon{
+    height: 30px;
+}
+
+.align{
+    height: 1.3rem;
+}
+.plus, .minus{
+    font-size: 1.3rem;
+}
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.hidden-icon{
+    display: none;
+}
+
+.btn-flexible, .btn{
     text-align: center;
     margin: 0 auto;
-    background-color: rgb(59, 190, 184);
+    background-color: rgb(146, 223, 219);
     border-radius: 50px;
-    font-size: 1.2rem;
+    font-size: 1rem;
     padding: 10px;
     margin-bottom: 2rem;
-    color: white;
+    color: rgb(0, 0, 0);
     transition: background-color 1s ease-in-out;
+    cursor: pointer;
 }
 
 .btn-flexible:hover{
     background-color: rgb(97, 19, 68);
 }
 
-
-.increase-img, .decrease-img , .align-left , .align-center, .align-right{
-    height: 10px;
+.space{
+    margin: 0.2rem;
 }
+
+
+/* .increase-img, .decrease-img, .btn , .align-left , .align-center, .align-right{ */
+    /* height: 10px; */
+/* } */
