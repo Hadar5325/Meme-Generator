@@ -61,10 +61,10 @@ function getMeme() {
     return gMeme
 }
 
-function setLineTxt(text, pickedColor, pickedAlign, pickedFont) {
+function setLineTxt(text, pickedColor, pickedAlign, pickedFont, pickedStrokeColor) {
     const index = gMeme.selectedLineIdx
     console.log(index, "index in set line txt")
-    gMeme.isCreatedLine ? updateTxt(index, text) : createAnewLine(index, text, pickedColor, pickedAlign, pickedFont)
+    gMeme.isCreatedLine ? updateTxt(index, text) : createAnewLine(index, text, pickedColor, pickedAlign, pickedFont ,pickedStrokeColor)
     console.log('end of set line txt')
 }
 
@@ -73,7 +73,7 @@ function updateTxt(index, text) {
 }
 
 
-function createAnewLine(index, text, pickedColor, pickedAlign, pickedFont) {
+function createAnewLine(index, text, pickedColor, pickedAlign, pickedFont,pickedStrokeColor) {
     gMeme.isCreatedLine = true
     console.log('inside')
     // create a place to put new data
@@ -84,6 +84,7 @@ function createAnewLine(index, text, pickedColor, pickedAlign, pickedFont) {
     gMeme.lines[index].size = pickedFont
     gMeme.lines[index].align = pickedAlign
     gMeme.lines[index].color = pickedColor
+    gMeme.lines[index].strokeColor = pickedStrokeColor
 
     console.log(gMeme)
 }
@@ -140,6 +141,12 @@ function updateColor(newColor){
     if(!gMeme.lines.length) return
     gMeme.lines[gMeme.selectedLineIdx].color = newColor
 }
+function updateStrokeColor(newColor){
+    if(!gMeme.lines.length) return
+    gMeme.lines[gMeme.selectedLineIdx].strokeColor = newColor
+    console.log(gMeme)
+}
+
 
 function setAlignLeft(){
     gMeme.lines[gMeme.selectedLineIdx].align = 'left'

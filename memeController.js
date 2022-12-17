@@ -8,6 +8,7 @@ let gheight
 let gPickedColor = null
 let gPickedAlign = null
 let gPickedFont = null
+let gPickedStrokeColor = null
 const BLACK_COLOR = '#000000'
 
 settingMemes()
@@ -78,6 +79,7 @@ function linesOnCanvas(lines, currMeme) {
             console.log('linesOnCanvas -memecontroller 1 ')
             alignPos = getColorFontAndAlign(currMeme, 0)
             gCtx.fillText(lines[0], alignPos, arr[0])
+            gCtx.strokeText(lines[0], alignPos, arr[0])
             break;
 
         case 2:
@@ -85,9 +87,11 @@ function linesOnCanvas(lines, currMeme) {
 
             alignPos = getColorFontAndAlign(currMeme, 0)
             gCtx.fillText(lines[0], alignPos, arr[0])
+            gCtx.strokeText(lines[0], alignPos, arr[0])
 
             alignPos = getColorFontAndAlign(currMeme, 1)
             gCtx.fillText(lines[1], alignPos, arr[2])
+            gCtx.strokeText(lines[1], alignPos, arr[2])
 
             break;
         default:
@@ -96,14 +100,18 @@ function linesOnCanvas(lines, currMeme) {
 
             alignPos = getColorFontAndAlign(currMeme, 0)
             gCtx.fillText(lines[0], alignPos, arr[0])
+            gCtx.strokeText(lines[0], alignPos, arr[0])
+
 
             alignPos = getColorFontAndAlign(currMeme, lines.length - 1)
             gCtx.fillText(lines[lines.length - 1], alignPos, arr[2])
+            gCtx.strokeText(lines[lines.length - 1], alignPos, arr[2])
 
             for (var i = 0; i < lines.length; i++) {
                 if (i === 0 || i === lines.length - 1) continue
                 alignPos = getColorFontAndAlign(currMeme, i)
                 gCtx.fillText(lines[i], alignPos, arr[1])
+                gCtx.strokeText(lines[i], alignPos, arr[1]);
             }
     }
 }
@@ -114,10 +122,13 @@ function getColorFontAndAlign(currMeme, index) {
     const sizeTxt = currMeme.lines[index].size
     const align = currMeme.lines[index].align
     const color = currMeme.lines[index].color
+    const strokeColor = currMeme.lines[index].strokeColor
 
     gCtx.font = `${sizeTxt}px serif`
     gCtx.fillStyle = `${color}`
     gCtx.textAlign = `${align}`
+    gCtx.strokeStyle = `${strokeColor}`
+
 
     const alignToShow = alignPos(align)
     return alignToShow
@@ -218,7 +229,7 @@ function onChangeFont(value) {
 
     if (fontSize >= 70 || fontSize <= 10) return
 
-    if (checkChoosingColorBeforeOpeningLineData(fontSize)) return
+    if (checkChoosingFontBeforeOpeningLineData(fontSize)) return
 
     updateSizeFont(fontSize)
 
@@ -242,9 +253,11 @@ function checkChoosingFontBeforeOpeningLineData(font) {
 //Change color of text 
 var elInputColor = document.querySelector('.colorInput')
 elInputColor.addEventListener('input', function () {
+    console.log('input color!')
     const elInputLine = document.querySelector('.input-line')
     // console.log(elInputLine.value ===)
     const color = elInputColor.value;
+    console.log(color)
     if (checkChoosingColorBeforeOpeningLineData(elInputLine, color)) return
 
     updateColor(color)
@@ -257,6 +270,7 @@ elInputColor.addEventListener('input', function () {
 function checkChoosingColorBeforeOpeningLineData(elInput, color) {
     if (elInput.value === '' && elInput.getAttribute('placeholder') === 'Text line') {
         gPickedColor = color
+        console.log(gPickedColor, "here!")
         return true
     }
     return false
@@ -264,18 +278,46 @@ function checkChoosingColorBeforeOpeningLineData(elInput, color) {
 
 
 
+
+// STORKE COLOR
+
+//Change stroke-color of text 
+var elInputStrokeColor = document.querySelector('.strokeColorInput')
+elInputStrokeColor.addEventListener('input', function () {
+    const elInputLine = document.querySelector('.input-line')
+    // console.log(elInputLine.value ===)
+    const color = elInputStrokeColor.value;
+    if (checkChoosingStrokeColorBeforeOpeningLineData(elInputLine, color)) return
+
+    updateStrokeColor(color)
+
+    gCtx.strokeStyle = color
+
+    renderMeme()
+}, false);
+
+function checkChoosingStrokeColorBeforeOpeningLineData(elInput, strokeColor) {
+    if (elInput.value === '' && elInput.getAttribute('placeholder') === 'Text line') {
+        gPickedStrokeColor = strokeColor
+        return true
+    }
+    return false
+}
+
+
 function onTextInput(text) {
     console.log(gPickedColor)
     console.log(gPickedAlign)
     console.log(gPickedFont)
     let pickedColor = gPickedColor ? gPickedColor : 'black'
-    let pickedAlign = gPickedAlign    ? gPickedAlign : 'left'
+    let pickedAlign = gPickedAlign ? gPickedAlign : 'left'
     let pickedFont = gPickedFont ? gPickedFont : 35
+    let pickedStrokeColor = gPickedStrokeColor ? gPickedStrokeColor : 'black'
     console.log(pickedColor, pickedAlign)
     // console.log(gCtx.color)
     // if(gCtx.color !== 'black') console.log('diff black')
     console.log(text.value)
-    setLineTxt(text.value, pickedColor, pickedAlign, pickedFont)
+    setLineTxt(text.value, pickedColor, pickedAlign, pickedFont ,pickedStrokeColor)
     renderMeme()
 }
 
@@ -374,7 +416,7 @@ function onAddTxtLine() {
     gPickedColor = null
     gPickedAlign = null
     gPickedFont = null
-
+    gPickedStrokeColor = null
     const elInput = document.querySelector('.input-line')
     if (elInput.value === '' && elInput.getAttribute('placeholder') === 'Text line') return
     elInput.value = ''
@@ -383,7 +425,9 @@ function onAddTxtLine() {
     const elColorInput = document.querySelector('.colorInput')
     elColorInput.value = BLACK_COLOR
 
-    console.log('before update')
+    const elColorStrokeInput = document.querySelector('.strokeColorInput')
+    elColorStrokeInput.value = BLACK_COLOR
+    
     updateNewTxtLine()
 }
 
@@ -411,7 +455,7 @@ function onAlignLeft() {
 }
 function onAlignCenter() {
 
-    const align =  'center'
+    const align = 'center'
     if (checkChoosingAlignBeforeOpeningLineData(align)) return
 
     setAlignCenter()
@@ -419,7 +463,7 @@ function onAlignCenter() {
 }
 function onAlignRight() {
 
-    const align =  'right'
+    const align = 'right'
     if (checkChoosingAlignBeforeOpeningLineData(align)) return
 
     setAlignRight()
