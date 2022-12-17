@@ -66,21 +66,37 @@
                     <input type="color" name="color" class="colorInput">
                     <input type="color" name="strokeColorInput" class="strokeColorInput">
                 </div>
-                <div class="icons">
-                    <div>a</div>
-                    <div>b</div>
-                    <div>c</div>
-                    <div>d</div>
+                <div class="icons-containter flex space-between">
+                    <div>
+                        <img class="icon" src="icons/birthday.png">
+                    </div>
+                    <div>
+                        <img class="icon" src="icons/adopt.png">
+                    </div>
+                    <div>
+                        <img class="icon" src="icons/stay-home.png">
+                    </div>
+                    <div>
+                        <img class="icon" src="icons/i-love-you.png">
+                    </div>
+                    <div>
+                        <img class="icon" src="icons/reading-book.png">
+                    </div>
                 </div>
-                <div>
-                    <div>Share</div>
-                    <div>Download</div>
+                <div class="containter-share-download flex space-between align-center">
+                    <button class="share-button" onclick="onUploadImg()">Share</button>
+                    <button class="download-button">
+                        <a href="#" onclick="onDownLoadImg(this)" download="Meme">Download</a>
+                    </button>
                 </div>
+                <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" />
+
             </div>
         </div>
     </section>
 
     <!-- Meme-Editor -->
+    <script src="uploadService.js"></script>
     <script src="utils.js"></script>
     <script src="memeController.js"></script>
     <script src="meme-service.js"></script>

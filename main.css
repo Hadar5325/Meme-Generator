@@ -152,3 +152,26 @@ canvas{
         grid-template-columns: repeat(var(--num-cols-web),1fr);
     }
 }
+
+
+/*ICONS */
+
+.icons-containter{
+    border: 3px black solid;
+}
+.icon{
+    width: 100%;
+    height: 100%;
+}
+
+.containter-share-download{
+    
+}
+
+/* share */
+/* .share-button{ */
+
+/* } */
+/* .download-button{ */
+
+/* } */
