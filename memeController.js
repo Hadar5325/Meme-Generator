@@ -32,9 +32,9 @@ function settingMemes() {
         centerPos: gElCanvas.width / 2,
         rightPos: gElCanvas.width - gElCanvas.width / 10
     }
-    gheight ={
+    gheight = {
         topLine: 0 + gElCanvas.height / 10,
-        middleLines:  gElCanvas.height / 2,
+        middleLines: gElCanvas.height / 2,
         bottomLine: gElCanvas.height - gElCanvas.height / 10
     }
 }
@@ -65,7 +65,6 @@ function renderImageOnCanvas(urlMeme, linesToShow, currMeme) {
 }
 
 function linesOnCanvas(lines, currMeme) {
-    console.log(getMeme(), 'before starting lines on canvas')
     let alignPos
     switch (lines.length) {
         case 0:
@@ -89,7 +88,7 @@ function linesOnCanvas(lines, currMeme) {
             break;
         default:
 
-        console.log('linesOnCanvas -memecontroller defualt ')
+            console.log('linesOnCanvas -memecontroller defualt ')
 
             alignPos = getColorFontAndAlign(currMeme, 0)
             gCtx.fillText(lines[0], alignPos, arr[0])
@@ -107,8 +106,6 @@ function linesOnCanvas(lines, currMeme) {
 
 
 function getColorFontAndAlign(currMeme, index) {
-    console.log(currMeme)
-    console.log(index)
 
     const sizeTxt = currMeme.lines[index].size
     const align = currMeme.lines[index].align
@@ -214,6 +211,8 @@ function onChangeFont(value) {
     console.log(numOfFont)
     if (numOfFont >= 70 || numOfFont <= 10) return
     gCtx.font = `${numOfFont}px serif`;
+
+    renderMeme()
 }
 
 //Change color of text 
@@ -334,8 +333,8 @@ function onAddTxtLine() {
 
     console.log('hi')
     const currMeme = getMeme()
-    currMeme.selectedLineIdx++
-    currMeme.isCreatedLine = false
+    updateNewTxtLine()
+
 
     const numOfCurrLines = currMeme.lines.length
     // switch (numOfCurrLines) {
@@ -352,7 +351,18 @@ function onAddTxtLine() {
 }
 
 function onDeleteLine() {
-    console.log('wow')
+    console.log("**********************************")
+    console.log('inside delete')
+    const elInput = document.querySelector(".input-line")
+    elInput.value = ''
+    
+    const currMeme = getMeme()
+    const currIndex = currMeme.selectedLineIdx 
+
+    deleteLine(currIndex)
+    renderMeme()
+    
+    
 }
 
 

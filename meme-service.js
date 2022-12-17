@@ -117,3 +117,16 @@ function setPosOfNewLine(fontCol, fontSize, fontAlign, indexLine) {
     gMeme.lines[indexLine].align = fontAlign
     console.log(gMeme)
 }
+
+function deleteLine() {
+    gMeme.lines.pop()
+
+    if(gMeme.selectedLineIdx) gMeme.selectedLineIdx--
+    gMeme.isCreatedLine = false
+
+}
+
+function updateNewTxtLine(){
+    gMeme.selectedLineIdx++
+    gMeme.isCreatedLine = false
+}
