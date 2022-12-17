@@ -1,0 +1,18 @@
+/* Fonts */
+@font-face {
+    font-family: Dancing;
+    src: url(/fonts/DancingScript-Regular.ttf);
+}
+@font-face {
+    font-family: amiroBold;
+    src: url(/fonts/Arimo-Bold.ttf);
+}
+@font-face {
+    font-family: amiro;
+    src: url(/fonts/Arimo-Regular.ttf);
+}
+
+@font-face {
+    font-family: redressed;
+    src: url(/fonts/Redressed-Regular.ttf);
+}

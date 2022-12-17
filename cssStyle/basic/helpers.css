@@ -1,0 +1,25 @@
+/* Helpers */
+.hidden {
+    display: none;
+}
+
+.shown {
+    /* background-color: blue; */
+    display: block;
+}
+
+.flex {
+    display: flex;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.clean-list {
+    list-style-type: none;
+}

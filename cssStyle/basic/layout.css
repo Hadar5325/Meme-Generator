@@ -1,0 +1,10 @@
+/* layout */
+.main-layout>*:not(.full) {
+    margin-inline-start: 50px;
+    margin-inline-end: 50px;
+}
+
+.full {
+    margin-inline-start: 25px;
+    margin-inline-end: 25px;
+}

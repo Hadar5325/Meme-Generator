@@ -6,6 +6,11 @@
 /* @import './basic/base.css'; */
 @import 'cssStyle/basic/buttons.css';
 @import 'cssStyle/componnets.css';
+@import 'cssStyle/setup/font-face.css';
+
+@import 'cssStyle/basic/base.css';
+@import 'cssStyle/basic/helpers.css';
+@import 'cssStyle/basic/layout.css';
 /* @import './basic/icons.css'; */
 /* @import './basic/helpers.css'; */
 /* @import './basic/layout.css'; */
@@ -19,106 +24,9 @@
 
 
 
-
-/* Basics */
-
-*{
-    box-sizing: border-box;
-    margin: 0;
-}
-
-body{
-    background-color: antiquewhite;
-}
-
-a{
-    text-decoration: none;
-}
-a:hover , .image, .button{
-    cursor: pointer;
-}
-
-a:hover, .logo:hover{
-    font-size: 2.3rem;
-    transition:  font-size 1s ease-in-out;
-}
-
-/* ::after.logo:not(:hover){ */
-/* } */
-/* a:not(:hover), .logo:not(:hover){ */
-    /* transition:  font-size 1s ease-in-out; */
-/* } */
-/* ::after.a:not(hover), ::after.logo:not(:hover){ */
-    /* transition:  font-size 1s ease-in-out; */
-/* } */
-
-a:visited{
-    color: black;
-}
-
-/* Fonts */
-@font-face {
-    font-family: Dancing;
-    src: url(/fonts/DancingScript-Regular.ttf);
-}
-@font-face {
-    font-family: amiroBold;
-    src: url(/fonts/Arimo-Bold.ttf);
-}
-@font-face {
-    font-family: amiro;
-    src: url(/fonts/Arimo-Regular.ttf);
-}
-
-@font-face {
-    font-family: redressed;
-    src: url(/fonts/Redressed-Regular.ttf);
-}
-
-
-/* Helpers */
-.hidden{
-    display: none;
-}
-.shown{
-    /* background-color: blue; */
-     display: block;
-}
-
-canvas{
-    overflow-clip-margin: content-box;
-    overflow: clip;
-}
-
-.flex{
-    display: flex;
-}
-.align-center{
-    align-items: center;
-}
-.space-between{
-    justify-content: space-between;
-}
-.clean-list{
-    list-style-type: none;
-}
-
 .logo , .main-nav{
     font-family: Dancing;
     font-size: 2rem;
-}
-
-/* layout */
-.main-layout > *:not(.full) {
-    margin-inline-start: 50px;
-    margin-inline-end: 50px;
-}
-
-
-
-.full{
-    margin-inline-start: 25px;
-    margin-inline-end: 25px;
 }
 
 /* Components */
@@ -130,15 +38,6 @@ canvas{
 }
 
 
-:root{
-    --gapImage: 16px;
-    --num-cols-mobile: 2;
-    --num-cols-tablet: 4;
-    --num-cols-web: 6;
-    --row-height: 200px
-}
-
-/* Variables*/
 .image-gallery > img{
     width: 100%;
     height: 100%;
@@ -224,15 +123,4 @@ input::placeholder {
     height: 30px;
 
 }
-/* .containter-share-download{ */
-
-/* } */
-
-/* share */
-/* .share-button{ */
-
-/* } */
-/* .download-button{ */
-
-/* } */
 

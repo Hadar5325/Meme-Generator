@@ -1,0 +1,15 @@
+/*ICONS */
+
+.icons-containter{
+    border: 3px #B4886B solid;
+
+}
+.icon{
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+.icon-inside{
+    height: 30px;
+
+}

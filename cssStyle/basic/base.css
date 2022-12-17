@@ -1,0 +1,40 @@
+
+/* Basics */
+
+
+:root{
+    --gapImage: 16px;
+    --num-cols-mobile: 2;
+    --num-cols-tablet: 4;
+    --num-cols-web: 6;
+    --row-height: 200px
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body{
+    background-color: antiquewhite;
+}
+
+a{
+    text-decoration: none;
+}
+a:hover , .image, .button{
+    cursor: pointer;
+}
+
+a:hover, .logo:hover{
+    font-size: 2.3rem;
+    transition:  font-size 1s ease-in-out;
+}
+
+a:visited{
+    color: black;
+}
+canvas{
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}

@@ -452,7 +452,7 @@ function renderImg(img) {
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
 }
 
-// Advance Feathures
+// Advance Features
 
 function getRandomMeme() {
     const randIdx = getRandIntInclu(0, gImgs.length)
