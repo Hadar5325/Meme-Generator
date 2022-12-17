@@ -275,7 +275,7 @@ function onTextInput(text) {
     // console.log(gCtx.color)
     // if(gCtx.color !== 'black') console.log('diff black')
     console.log(text.value)
-    setLineTxt(text.value, pickedColor, pickedAlign)
+    setLineTxt(text.value, pickedColor, pickedAlign, pickedFont)
     renderMeme()
 }
 
@@ -373,6 +373,7 @@ function onAddTxtLine() {
 
     gPickedColor = null
     gPickedAlign = null
+    gPickedFont = null
 
     const elInput = document.querySelector('.input-line')
     if (elInput.value === '' && elInput.getAttribute('placeholder') === 'Text line') return
