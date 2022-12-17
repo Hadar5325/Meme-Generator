@@ -224,13 +224,11 @@ function onIncreaseFont() {
     gCtx.font = `${numOfFont}px serif`;
 }
 
-function onChangeFont(value) {
-    const symbol = value.innerText
+function onChangeFont(value) {    
+    const symbol = value.innerText.includes('+')
 
     const arr = gCtx.font.split('px')
-    let fontSize = symbol === '+' ? +arr[0] + 5 : +arr[0] - 5
-
-    console.log(fontSize)
+    let fontSize = symbol ? +arr[0] + 5 : +arr[0] - 5
 
     if (fontSize >= 70 || fontSize <= 10) return
 
@@ -271,6 +269,22 @@ elInputColor.addEventListener('input', function () {
     renderMeme()
 }, false);
 
+
+function showAndHiddenInputColorFont(){
+   const elPaint = document.querySelector('.paint-icon')
+   elPaint.classList.add('.shown')
+
+   const elInput = document.querySelector('.hidden-icon')
+   elInput.classList.remove('.hidden-icon-color')
+}
+
+function showAndHiddenInputStrokeFont(){
+    const elStroke = document.querySelector('.stroke-icon')
+    elStroke.classList.add('.shown')
+ 
+    const elInput = document.querySelector('.hidden-icon')
+    elInput.classList.remove('hidden-icon-storoke')
+}
 
 function checkChoosingColorBeforeOpeningLineData(elInput, color) {
     if (elInput.value === '' && elInput.getAttribute('placeholder') === 'Text line') {

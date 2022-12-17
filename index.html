@@ -66,13 +66,13 @@
                     </div>
                 </div>
                 <div class="text-options container">
-                    <button onclick="onChangeFont(this)" class="space btn">
-                        <div class="plus">A+
-                        </div>
+                    <button onclick="onChangeFont(this)" class="space btn plus">A+
+                        <!-- <div class="plus">A+ -->
+                        <!-- </div> -->
                     </button>
-                    <button class="space btn" onclick="onChangeFont(this)">
-                        <div class="minus">A-
-                        </div>
+                    <button class="space btn minus " onclick="onChangeFont(this)">A-
+                        <!-- <div class="minus">A- -->
+                        <!-- </div> -->
                     </button>
 
                     <button class="left-align space btn" onclick="onAlignLeft()">
@@ -86,20 +86,21 @@
                     </button>
                 </div>
                 <div class="text-options container">
-                    <!-- <button>S</button> -->
-                    <button onclick="showAndHiddenInput()" class="space btn">
-                        <img class="img" src="./btn-icons/paint-icon.svg" alt="paint-icon">
-                        <div class="hidden-icon">
-                            <input type="color" name="color" class="colorInput">
-                        </div>
-                    </button>
+                    <label for="color" class="space textLabel">Color</label>
+                    <input type="color" name="color" class="colorInput hidden-icon-color">
+                    <label for="strokeColorInput" class="space textLabel">stroke color</label>
+                    <input type="color" name="strokeColorInput" class="strokeColorInput hidden-icon-storoke">
 
-                    <button onclick="showAndHiddenInput()" class="space btn">
-                        <img class="img" src="./btn-icons/down-arrow-icon.svg" alt="">
-                        <div class="hidden-icon">
-                            <input type="color" name="strokeColorInput" class="strokeColorInput">
-                        </div>
-                    </button>
+                    <!-- <button>S</button> -->
+                    <!-- <button onclick="showAndHiddenInputColorFont()" class="space btn"> -->
+                    <!-- <img class="img paint-icon" src="./btn-icons/paint-icon.svg" alt="paint-icon"> -->
+                    <!-- <input type="color" name="color" class="colorInput hidden-icon-color"> -->
+                    <!-- </button> -->
+
+                    <!-- <button onclick="showAndHiddenInputStrokeFont()" class="space btn"> -->
+                    <!-- <img class="img stroke-icon" src="./btn-icons/down-arrow-icon.svg" alt=""> -->
+                    <!-- <input type="color" name="strokeColorInput" class="strokeColorInput hidden-icon-storoke"> -->
+                    <!-- </button> -->
                 </div>
                 <div class="icons-containter flex space-between">
                     <div>
@@ -121,10 +122,10 @@
                 <div class="container">
                     <button class="share-button space btn" onclick="onUploadImg()">
                         <img class="img" src="./btn-icons/share-line-icon.svg" alt="share-icon">
-                        Share</button>
+                        </button>
                     <button class="download-button space btn">
                         <img class="img" src="./btn-icons/download-icon.svg" alt="download">
-                        <a href="#" onclick="onDownLoadImg(this)" download="Meme">Download</a>
+                        <a href="#" onclick="onDownLoadImg(this)" download="Meme"></a>
                     </button>
                 </div>
                 <div class="container space">
