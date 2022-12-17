@@ -77,3 +77,78 @@
 /* .item{ */
     /* margin-block: 0.5rem; */
 /* } */
+
+
+
+
+
+.input-line[type=text] {
+    padding: 0.5rem;
+    background-color: rgb(229, 193, 227);
+    font-size: 24px;
+    border-radius: 20px;
+  }
+
+.img{
+    cursor: pointer;
+    height: 0.7rem;
+}
+.align{
+    height: 0.7rem;
+}
+.plus, .minus{
+    font-size: 0.7rem;
+}
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-flexible, .btn{
+    text-align: center;
+    margin: 0 auto;
+    background-color: rgb(146, 223, 219);
+    border-radius: 50px;
+    font-size: 1rem;
+    padding: 10px;
+    margin-bottom: 2rem;
+    color: rgb(0, 0, 0);
+    transition: background-color 1s ease-in-out;
+    cursor: pointer;
+}
+
+.btn-flexible:hover{
+    background-color: rgb(97, 19, 68);
+}
+
+.space{
+    margin: 0.2rem;
+}
+
+label, .file {
+    color: #B4886B;
+    font-family: Dancing;
+    font-size: 1.5rem;
+  }
+
+
+.meme-editor {
+    display: grid;
+    grid-template-columns: 0.7fr;
+    grid-template-rows: 0.5fr 0.5fr;
+    grid-template-areas:
+    "image-section"
+    "option-section";
+    height: 100vh;
+    width: 100vw;
+}
+
+.canvas-container {
+    grid-area: image-section;
+  }
+
+  .all-options {
+
+    grid-area: option-section;
+  }

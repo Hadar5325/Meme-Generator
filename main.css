@@ -1,9 +1,4 @@
-/* Setup */
-/* @import './setup/vars.css'; */
-/* @import './setup/font-face.css'; */
 
-/* /~ Basic ~/ */
-/* @import './basic/base.css'; */
 @import 'cssStyle/basic/buttons.css';
 @import 'cssStyle/components.css';
 @import 'cssStyle/setup/font-face.css';
@@ -80,7 +75,7 @@ label, .file {
     "image-section"
     "option-section";
     height: 100vh;
-    width: 100vw;
+    /* width: 100vw; */
 }
 
 .canvas-container {
@@ -103,10 +98,6 @@ label, .file {
           "image-section  option-section";
         height: 70vh;
       }
-    
-    body{
-        background-color: rgb(125, 203, 203);
-    }
     .image-gallery{
         grid-template-columns: repeat(var(--num-cols-tablet),1fr);
     }
@@ -114,9 +105,6 @@ label, .file {
 }
 /* For Web */
 @media(min-width: 1100px){
-    body{
-        background-color: rgb(238, 149, 227);
-    }
     .image-gallery{
         grid-template-columns: repeat(var(--num-cols-web),1fr);
     }
