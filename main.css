@@ -5,90 +5,105 @@
 /* /~ Basic ~/ */
 /* @import './basic/base.css'; */
 @import 'cssStyle/basic/buttons.css';
-@import 'cssStyle/componnets.css';
+@import 'cssStyle/components.css';
 @import 'cssStyle/setup/font-face.css';
 
 @import 'cssStyle/basic/base.css';
 @import 'cssStyle/basic/helpers.css';
 @import 'cssStyle/basic/layout.css';
-/* @import './basic/icons.css'; */
-/* @import './basic/helpers.css'; */
-/* @import './basic/layout.css'; */
-
-/* /~ Cmps ~/ */
-/* @import './cmps/header.css'; */
-/* @import './cmps/main-content.css'; */
-/* @import './cmps/modal.css'; */
-/* @import './cmps/dropdown.css'; */
-/* @import './cmps/footer.css'; */
-
-
-
-.logo , .main-nav{
-    font-family: Dancing;
-    font-size: 2rem;
-}
-
-/* Components */
-.main-header .main-nav li:not(:last-child){
-    margin-inline-end: 60px;
-}
-.main-header{
-    height: 10rem;
-}
-
-
-.image-gallery > img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.image-gallery{
-    display: grid;
-    grid-template-columns: repeat(var(--num-cols-mobile),1fr);
-    grid-auto-rows: var(--row-height);
-    gap: var(--gapImage);
-}
-
-.meme-editor{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    background-color: antiquewhite;
-    gap: 1rem;
-    grid-template-areas:
-    "image-section  option-section";
-    height: 70vh;
-}
-.canvas-container{
-    grid-area: image-section;
-}
-.all-options{
-    grid-area: option-section;
-}
-
-.input-line{
-    width: 100%;
-}
-input::placeholder {
-    color: #B4886B;
-    font-family: Dancing;
-    font-size: 2rem;
-}
-.item{
-    margin-bottom: 1rem;
-}
-
-.all-options{
-    margin-left: 30px;
-}
+@import 'cssStyle/icons.css';
 
 
 /* Media Queries */
 /* For Mobile */
 
+.input-line[type=text] {
+    padding: 0.5rem;
+    background-color: rgb(229, 193, 227);
+    font-size: 24px;
+    border-radius: 20px;
+  }
+
+.img{
+    cursor: pointer;
+    height: 0.7rem;
+}
+.paint-icon{
+    height: 30px;
+}
+
+.align{
+    height: 0.7rem;
+}
+.plus, .minus{
+    font-size: 0.7rem;
+}
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-flexible, .btn{
+    text-align: center;
+    margin: 0 auto;
+    background-color: rgb(146, 223, 219);
+    border-radius: 50px;
+    font-size: 1rem;
+    padding: 10px;
+    margin-bottom: 2rem;
+    color: rgb(0, 0, 0);
+    transition: background-color 1s ease-in-out;
+    cursor: pointer;
+}
+
+.btn-flexible:hover{
+    background-color: rgb(97, 19, 68);
+}
+
+.space{
+    margin: 0.2rem;
+}
+
+label, .file {
+    color: #B4886B;
+    font-family: Dancing;
+    font-size: 1.5rem;
+  }
+
+
+.meme-editor {
+    display: grid;
+    grid-template-columns: 0.7fr;
+    grid-template-rows: 0.5fr 0.5fr;
+    grid-template-areas:
+    "image-section"
+    "option-section";
+    height: 100vh;
+    width: 100vw;
+}
+
+.canvas-container {
+    grid-area: image-section;
+  }
+
+  .all-options {
+
+    grid-area: option-section;
+  }
+
 /* For Tablet */
 @media(min-width :940px){
+    .meme-editor {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        background-color: antiquewhite;
+        gap: 1rem;
+        grid-template-areas:
+          "image-section  option-section";
+        height: 70vh;
+      }
+    
     body{
         background-color: rgb(125, 203, 203);
     }
@@ -105,22 +120,5 @@ input::placeholder {
     .image-gallery{
         grid-template-columns: repeat(var(--num-cols-web),1fr);
     }
-}
-
-
-/*ICONS */
-
-.icons-containter{
-    border: 3px #B4886B solid;
-
-}
-.icon{
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-}
-.icon-inside{
-    height: 30px;
-
 }
 
