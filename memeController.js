@@ -9,6 +9,9 @@ let gPickedColor = null
 let gPickedAlign = null
 let gPickedFont = null
 let gPickedStrokeColor = null
+
+let gCounterSticker = 0
+const SPACE_COUNTER = 60
 const BLACK_COLOR = '#000000'
 
 settingMemes()
@@ -91,6 +94,7 @@ function linesOnCanvas(lines, currMeme) {
 
             alignPos = getColorFontAndAlign(currMeme, 1)
             gCtx.fillText(lines[1], alignPos, arr[2])
+
             gCtx.strokeText(lines[1], alignPos, arr[2])
 
             break;
@@ -104,12 +108,13 @@ function linesOnCanvas(lines, currMeme) {
 
 
             alignPos = getColorFontAndAlign(currMeme, lines.length - 1)
-            gCtx.fillText(lines[lines.length - 1], alignPos, arr[2])
-            gCtx.strokeText(lines[lines.length - 1], alignPos, arr[2])
+            gCtx.fillText(lines[1], alignPos, arr[2])
+            gCtx.strokeText(lines[1], alignPos, arr[2])
 
             for (var i = 0; i < lines.length; i++) {
-                if (i === 0 || i === lines.length - 1) continue
+                if (i === 0 || i === 1) continue
                 alignPos = getColorFontAndAlign(currMeme, i)
+                console.log(lines[i], alignPos, arr[1])
                 gCtx.fillText(lines[i], alignPos, arr[1])
                 gCtx.strokeText(lines[i], alignPos, arr[1]);
             }
@@ -306,9 +311,11 @@ function checkChoosingStrokeColorBeforeOpeningLineData(elInput, strokeColor) {
 
 
 function onTextInput(text) {
+
     console.log(gPickedColor)
     console.log(gPickedAlign)
     console.log(gPickedFont)
+
     let pickedColor = gPickedColor ? gPickedColor : 'black'
     let pickedAlign = gPickedAlign ? gPickedAlign : 'left'
     let pickedFont = gPickedFont ? gPickedFont : 35
@@ -317,7 +324,7 @@ function onTextInput(text) {
     // console.log(gCtx.color)
     // if(gCtx.color !== 'black') console.log('diff black')
     console.log(text.value)
-    setLineTxt(text.value, pickedColor, pickedAlign, pickedFont ,pickedStrokeColor)
+    setLineTxt(text.value, pickedColor, pickedAlign, pickedFont, pickedStrokeColor)
     renderMeme()
 }
 
@@ -393,6 +400,7 @@ function switchLines(currMeme, lenOfLines, elInput) {
                 break
         }
     } else {
+        
         switch (currMeme.selectedLineIdx) {
             case 0:
                 gCtx.fillText(elInput.value, 30, arr[0])
@@ -427,7 +435,7 @@ function onAddTxtLine() {
 
     const elColorStrokeInput = document.querySelector('.strokeColorInput')
     elColorStrokeInput.value = BLACK_COLOR
-    
+
     updateNewTxtLine()
 }
 
@@ -482,12 +490,12 @@ function checkChoosingAlignBeforeOpeningLineData(align) {
 
 /* End Align Text*/
 
-function onDownLoadImg(elLink){
+function onDownLoadImg(elLink) {
     const data = gElCanvas.toDataURL()
     elLink.href = data
 }
 
-function onUploadImg(){
+function onUploadImg() {
     const imgDataUrl = gElCanvas.toDataURL('image/jpeg') // Gets the canvas content as an image format
 
     function onSuccess(uploadedImgUrl) {
@@ -499,7 +507,7 @@ function onUploadImg(){
 }
 
 
-function onImgInput(ev){
+function onImgInput(ev) {
     loadImageFromInput(ev, renderImg)
 }
 
@@ -555,9 +563,28 @@ function getRandomMeme() {
 }
 
 
+/* Stickers */
 
-
-
+function addIcon(data) {
+    console.log('hi')
+    const currMeme = getMeme()
+    if (!currMeme.lines.length) {
+        const elImage = new Image()
+        elImage.src = data.src
+        elImage.onload = () => {
+            gCtx.drawImage(elImage, 10, 10, 50, 50)
+        }
+    } else {
+        const index = currMeme.selectedLineIdx
+        const elImage = new Image()
+        elImage.src = data.src
+        const widthTxt = gCtx.measureText(gMeme.
+        lines[index].txt).width
+        elImage.onload = () => {
+            gCtx.drawImage(elImage, widthTxt + 60, 10, 50, 50)
+        }
+    }
+}
 
 // Switch lines
 // function onSwitchLines(data) {

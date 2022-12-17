@@ -28,7 +28,9 @@
     </header>
 
     <section class="containter-image shown">
-        <button class="flexible" onclick="onFlexible()">I'm flexible</button>
+        <div class="flex">
+            <button class="flexible btn-flexible btn" onclick="onFlexible()">I'm flexible</button>
+        </div>
         <section class="image-gallery">
         </section>
     </section>
@@ -48,39 +50,44 @@
                     <button onclick="onDeleteLine()">delete txt line</button>
                 </div>
                 <div class="text-options">
-                    <button class="increase-font item" onclick="onChangeFont(this)">+</button>
-                    <button class="decrease-font item" onclick="onChangeFont(this)">-</button>
+                    <button class="increase-font item btn" onclick="onChangeFont(this)">
+                        <img class="increase-img" src="./btn-icons/font-size-increase.svg" alt="increase font">
+                        +</button>
+                    <button class="decrease-font item btn" onclick="onChangeFont(this)">
+                        <img class="decrease-img" src="./btn-icons/font-size-decrease.svg" alt="increase font">
+                        -</button>
                     <button>A+</button>
                     <button>A-</button>
-                    <button onclick="onAlignLeft()">left text</button>
-                    <button onclick="onAlignCenter()">center text</button>
-                    <button onclick="onAlignRight()">right text</button>
+                    <button class="btn left-align" onclick="onAlignLeft()">
+                        <img class="align-left" src="./btn-icons/text-align-left-icon.svg" alt="align-left">
+                    </button>
+                    <button class="btn center-align" onclick="onAlignCenter()">
+                        <img class="align-center" src="./btn-icons/text-align-center-icon.svg" alt="align-center">
+                    </button>
+                    <button class="btn right-align" onclick="onAlignRight()">
+                        <img class="align-right" src="./btn-icons/text-align-right-icon.svg" alt="align-right">
+                    </button>
                 </div>
                 <div>
-                    <select name="" id="">
-                        <option value="a">a</option>
-                        <option value="a">b</option>
-                        <option value="a">c</option>
-                    </select>
                     <!-- <button>S</button> -->
                     <input type="color" name="color" class="colorInput">
                     <input type="color" name="strokeColorInput" class="strokeColorInput">
                 </div>
                 <div class="icons-containter flex space-between">
                     <div>
-                        <img class="icon" src="icons/birthday.png">
+                        <img class="icon" onclick="addIcon(this)" src="icons/birthday.png">
                     </div>
                     <div>
-                        <img class="icon" src="icons/adopt.png">
+                        <img class="icon" onclick="addIcon(this)" src="icons/adopt.png">
                     </div>
                     <div>
-                        <img class="icon" src="icons/stay-home.png">
+                        <img class="icon" onclick="addIcon(this)" src="icons/stay-home.png">
                     </div>
                     <div>
-                        <img class="icon" src="icons/i-love-you.png">
+                        <img class="icon" onclick="addIcon(this)" src="icons/i-love-you.png">
                     </div>
                     <div>
-                        <img class="icon" src="icons/reading-book.png">
+                        <img class="icon" onclick="addIcon(this)" src="icons/reading-book.png">
                     </div>
                 </div>
                 <div class="containter-share-download flex space-between align-center">
