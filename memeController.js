@@ -7,6 +7,7 @@ let gAlignPos
 let gheight
 let gPickedColor = null
 let gPickedAlign = null
+let gPickedFont = null
 const BLACK_COLOR = '#000000'
 
 settingMemes()
@@ -217,11 +218,26 @@ function onChangeFont(value) {
 
     if (fontSize >= 70 || fontSize <= 10) return
 
+    if (checkChoosingColorBeforeOpeningLineData(fontSize)) return
+
     updateSizeFont(fontSize)
 
     gCtx.font = `${fontSize}px serif`;
     renderMeme()
 }
+
+function checkChoosingFontBeforeOpeningLineData(font) {
+    const elInput = document.querySelector('.input-line')
+    if (elInput.value === '' && elInput.getAttribute('placeholder') === 'Text line') {
+        gPickedFont = font
+        return true
+    }
+    return false
+}
+
+
+
+
 
 //Change color of text 
 var elInputColor = document.querySelector('.colorInput')
@@ -231,9 +247,6 @@ elInputColor.addEventListener('input', function () {
     const color = elInputColor.value;
     if (checkChoosingColorBeforeOpeningLineData(elInputLine, color)) return
 
-    console.log('wowwwwwwww')
-
-    console.log('before update')
     updateColor(color)
 
     gCtx.fillStyle = color
@@ -254,8 +267,10 @@ function checkChoosingColorBeforeOpeningLineData(elInput, color) {
 function onTextInput(text) {
     console.log(gPickedColor)
     console.log(gPickedAlign)
+    console.log(gPickedFont)
     let pickedColor = gPickedColor ? gPickedColor : 'black'
     let pickedAlign = gPickedAlign    ? gPickedAlign : 'left'
+    let pickedFont = gPickedFont ? gPickedFont : 35
     console.log(pickedColor, pickedAlign)
     // console.log(gCtx.color)
     // if(gCtx.color !== 'black') console.log('diff black')
