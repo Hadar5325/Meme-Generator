@@ -63,7 +63,9 @@ function getMeme() {
 
 function setLineTxt(text) {
     const index = gMeme.selectedLineIdx
+    console.log(index, "index in set line txt")
     gMeme.isCreatedLine ? updateTxt(index, text) : createAnewLine(index, text)
+    console.log('end of set line txt')
 }
 
 function updateTxt(index, text) {
@@ -72,25 +74,20 @@ function updateTxt(index, text) {
 
 
 function createAnewLine(index, text) {
+    gMeme.isCreatedLine = true
+    console.log('inside')
+    // create a place to put new data
+    gMeme.lines.splice(index, 0, {});
+    console.log(gMeme)
 
-    if (!gMeme.isCreatedLine) {
-        gMeme.isCreatedLine = true
-        console.log('inside')
-        // create a place to put new data
-        gMeme.lines.splice(index, 0, {});
-        console.log(gMeme)
+    gMeme.lines[index].txt = text
+    gMeme.lines[index].size = 30
+    gMeme.lines[index].align = 'left'
+    gMeme.lines[index].color = 'black'
 
-
-        console.log(gMeme)
-
-        gMeme.lines[index].txt = text
-        gMeme.lines[index].size = 30
-        gMeme.lines[index].align = 'left'
-        gMeme.lines[index].color = 'black'
-
-        console.log(gMeme)
-    }
+    console.log(gMeme)
 }
+
 
 
 function setImg(idImg) {

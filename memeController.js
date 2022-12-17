@@ -65,6 +65,7 @@ function renderImageOnCanvas(urlMeme, linesToShow, currMeme) {
 }
 
 function linesOnCanvas(lines, currMeme) {
+    console.log(getMeme(), 'before starting lines on canvas')
     let alignPos
     switch (lines.length) {
         case 0:
@@ -82,7 +83,7 @@ function linesOnCanvas(lines, currMeme) {
             alignPos = getColorFontAndAlign(currMeme, 0)
             gCtx.fillText(lines[0], alignPos, arr[0])
 
-            alignPos = getColorFontAndAlign(currMeme, 2)
+            alignPos = getColorFontAndAlign(currMeme, 1)
             gCtx.fillText(lines[1], alignPos, arr[2])
 
             break;
@@ -106,9 +107,12 @@ function linesOnCanvas(lines, currMeme) {
 
 
 function getColorFontAndAlign(currMeme, index) {
-    const color = currMeme.lines[index].color
+    console.log(currMeme)
+    console.log(index)
+
     const sizeTxt = currMeme.lines[index].size
     const align = currMeme.lines[index].align
+    const color = currMeme.lines[index].color
 
     gCtx.font = `${sizeTxt}px serif`
     gCtx.fillStyle = `${color}`
@@ -160,7 +164,6 @@ function lineOfTextOnCanvas(linesToShow) {
             var mesureCase2 = gCtx.measureText(linesToShow[0])
             updateGmemeMesures(mesureCase2)
 
-            // console.log(gCtx.measureText(linesToShow[1]))
             break;
     }
 }
@@ -326,20 +329,26 @@ function switchLines(currMeme, lenOfLines, elInput) {
 // Text options
 
 function onAddTxtLine() {
+    const elInput = document.querySelector(".input-line")
+    elInput.value = ''
+
     console.log('hi')
     const currMeme = getMeme()
+    currMeme.selectedLineIdx++
+    currMeme.isCreatedLine = false
+
     const numOfCurrLines = currMeme.lines.length
-    switch (numOfCurrLines) {
-        case 0:
-            setPosOfNewLine('black','left', 30, 0)
-            break
-        // case 1:
-        //     break
-        // case 2:
-        //     break
-        // default:
-        //     break
-    }
+    // switch (numOfCurrLines) {
+    //     case 0:
+    //         setPosOfNewLine('black','left', 30, 0)
+    //         break
+    //     case 1:
+    //         break
+    //     case 2:
+    //         break
+    //     default:
+    //         break
+    // }
 }
 
 function onDeleteLine() {
